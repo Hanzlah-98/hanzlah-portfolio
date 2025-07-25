@@ -139,43 +139,78 @@
     </ul>
   </section>
 <!-- Certificates Section -->
-<section id="certificates" style="padding: 40px 20px; max-width: 900px; margin: auto; opacity: 0; transform: translateY(50px); animation: flyInUp 1s ease-out forwards;">
-  <h2 style="color: #222; text-align: center;">Certificates</h2>
+<section id="certificates" class="fly-in-up">
+  <h2 class="cert-heading">Certificates</h2>
 
-  <div class="certificate" style="margin-bottom: 40px; text-align: center;">
+  <div class="certificate">
     <a href="https://hanzlah-98.github.io/hanzlah-portfolio/AI%20For%20Beginners.jpg" target="_blank">
-      <h3 style="color: #222;">AI for Beginners – HP LIFE</h3>
+      <h3>AI for Beginners – HP LIFE</h3>
       <img
         src="https://hanzlah-98.github.io/hanzlah-portfolio/AI%20For%20Beginners.jpg"
         alt="AI for Beginners Certificate"
-        style="width: 60%; max-width: 600px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); transition: transform 0.3s ease;"
-        onmouseover="this.style.transform='scale(1.02)';"
-        onmouseout="this.style.transform='scale(1)';"
       />
     </a>
   </div>
 
-  <div class="certificate" style="margin-bottom: 40px; text-align: center;">
+  <div class="certificate">
     <a href="https://hanzlah-98.github.io/hanzlah-portfolio/Effective%20Presentations.jpg" target="_blank">
-      <h3 style="color: #222;">Effective Presentations – HP LIFE</h3>
+      <h3>Effective Presentations – HP LIFE</h3>
       <img
         src="https://hanzlah-98.github.io/hanzlah-portfolio/Effective%20Presentations.jpg"
         alt="Effective Presentations Certificate"
-        style="width: 60%; max-width: 600px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); transition: transform 0.3s ease;"
-        onmouseover="this.style.transform='scale(1.02)';"
-        onmouseout="this.style.transform='scale(1)';"
       />
     </a>
   </div>
 </section>
-
-<!-- Animation -->
-<style>
+  <style>
+/* Animation Keyframes */
 @keyframes flyInUp {
-  to {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Apply animation on page load */
+.fly-in-up {
+  animation: flyInUp 1s ease-out forwards;
+}
+
+/* Style the section */
+#certificates {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+/* Heading */
+.cert-heading {
+  color: #222;
+  margin-bottom: 30px;
+}
+
+/* Certificate container */
+.certificate {
+  margin-bottom: 40px;
+}
+
+/* Certificate image style */
+.certificate img {
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+/* Hover zoom */
+.certificate img:hover {
+  transform: scale(1.05);
 }
 </style>
 </section>
