@@ -139,26 +139,45 @@
     </ul>
   </section>
 <!-- Certificates Section -->
-<section id="certificates" style="padding: 40px 20px; max-width: 900px; margin: auto;">
+<section id="certificates" style="padding: 40px 20px; max-width: 900px; margin: auto; opacity: 0; transform: translateY(50px); animation: flyInUp 1s ease-out forwards;">
   <h2 style="color: #222;">Certificates</h2>
 
   <div class="certificate" style="margin-bottom: 40px;">
-    <h3 style="color: #222;">AI for Beginners – HP LIFE</h3>
-    <img
-      src="https://hanzlah-98.github.io/hanzlah-portfolio/AI%20For%20Beginners.jpg"
-      alt="AI for Beginners Certificate"
-      style="max-width: 100%; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);"
-    />
+    <a href="https://hanzlah-98.github.io/hanzlah-portfolio/AI%20For%20Beginners.jpg" target="_blank" style="text-decoration: none;">
+      <h3 style="color: #222;">AI for Beginners – HP LIFE</h3>
+      <img
+        src="https://hanzlah-98.github.io/hanzlah-portfolio/AI%20For%20Beginners.jpg"
+        alt="AI for Beginners Certificate"
+        style="max-width: 100%; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); transition: transform 0.3s ease;"
+        onmouseover="this.style.transform='scale(1.02)';"
+        onmouseout="this.style.transform='scale(1)';"
+      />
+    </a>
   </div>
 
   <div class="certificate" style="margin-bottom: 40px;">
-    <h3 style="color: #222;">Effective Presentations – HP LIFE</h3>
-    <img
-      src="https://hanzlah-98.github.io/hanzlah-portfolio/Effective%20Presentations.jpg"
-      alt="Effective Presentations Certificate"
-      style="max-width: 100%; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);"
-    />
+    <a href="https://hanzlah-98.github.io/hanzlah-portfolio/Effective%20Presentations.jpg" target="_blank" style="text-decoration: none;">
+      <h3 style="color: #222;">Effective Presentations – HP LIFE</h3>
+      <img
+        src="https://hanzlah-98.github.io/hanzlah-portfolio/Effective%20Presentations.jpg"
+        alt="Effective Presentations Certificate"
+        style="max-width: 100%; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); transition: transform 0.3s ease;"
+        onmouseover="this.style.transform='scale(1.02)';"
+        onmouseout="this.style.transform='scale(1)';"
+      />
+    </a>
   </div>
+</section>
+
+<!-- Animation Keyframe (place inside a <style> tag in your <head>) -->
+<style>
+@keyframes flyInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
 </section>
 
   <section>
