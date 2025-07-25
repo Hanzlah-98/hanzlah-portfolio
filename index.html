@@ -140,30 +140,22 @@
   </section>
 <!-- Certificates Section -->
 <section id="certificates" class="fly-in-up">
-  <h2 class="cert-heading">Certificates</h2>
+  <h2 class="cert-title">Certificates</h2>
 
   <div class="certificate">
-    <a href="https://hanzlah-98.github.io/hanzlah-portfolio/AI%20For%20Beginners.jpg" target="_blank">
-      <h3>AI for Beginners – HP LIFE</h3>
-      <img
-        src="https://hanzlah-98.github.io/hanzlah-portfolio/AI%20For%20Beginners.jpg"
-        alt="AI for Beginners Certificate"
-      />
+    <a href="AI%20For%20Beginners.pdf#toolbar=0" target="_blank" class="view-button">
+      View Certificate – AI for Beginners
     </a>
   </div>
 
   <div class="certificate">
-    <a href="https://hanzlah-98.github.io/hanzlah-portfolio/Effective%20Presentations.jpg" target="_blank">
-      <h3>Effective Presentations – HP LIFE</h3>
-      <img
-        src="https://hanzlah-98.github.io/hanzlah-portfolio/Effective%20Presentations.jpg"
-        alt="Effective Presentations Certificate"
-      />
+    <a href="Effective%20Presentations.pdf#toolbar=0" target="_blank" class="view-button">
+      View Certificate – Effective Presentations
     </a>
   </div>
 </section>
-  <style>
-/* Animation Keyframes */
+<style>
+/* Fly-in animation */
 @keyframes flyInUp {
   0% {
     opacity: 0;
@@ -175,42 +167,45 @@
   }
 }
 
-/* Apply animation on page load */
+/* Apply fly-in */
 .fly-in-up {
   animation: flyInUp 1s ease-out forwards;
+  opacity: 0;
+  transform: translateY(50px);
 }
 
-/* Style the section */
+/* Certificates layout */
 #certificates {
   padding: 40px 20px;
-  max-width: 900px;
+  max-width: 800px;
   margin: auto;
   text-align: center;
 }
 
-/* Heading */
-.cert-heading {
+.cert-title {
+  font-size: 28px;
   color: #222;
   margin-bottom: 30px;
 }
 
-/* Certificate container */
 .certificate {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
-/* Certificate image style */
-.certificate img {
-  width: 300px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  cursor: pointer;
+/* Styled view-only button */
+.view-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #007BFF;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
-/* Hover zoom */
-.certificate img:hover {
-  transform: scale(1.05);
+.view-button:hover {
+  background-color: #0056b3;
 }
 </style>
 </section>
