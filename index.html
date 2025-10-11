@@ -23,7 +23,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      background: #1a2238;
+      background: #1a2238; 
       z-index: 1000;
       display: flex;
       justify-content: center;
@@ -38,14 +38,15 @@
     }
     nav ul li { display: inline; }
     nav ul li a {
-      color: white;
+      color: white; 
       text-decoration: none;
       font-weight: 600;
       padding: 8px 12px;
       transition: background 0.3s, color 0.3s;
       border-radius: 5px;
     }
-    nav ul li a:hover { background: #007BFF; color: white; }
+    nav ul li a:hover { background: #007BFF; color: white; } 
+    nav ul li a.active { background: #007BFF; color: white; } 
 
     header, footer {
       background: #1a2238;
@@ -94,11 +95,7 @@
       0% { opacity: 0; transform: translateY(50px); }
       100% { opacity: 1; transform: translateY(0); }
     }
-    .fly-in-up {
-      animation: flyInUp 1.2s ease-out forwards;
-      opacity: 0;
-      transform: translateY(50px);
-    }
+    .fly-in-up { animation: flyInUp 1.2s ease-out forwards; opacity: 0; transform: translateY(50px); }
 
     /* Certificates layout */
     #certificates { padding: 40px 20px; max-width: 800px; margin: auto; text-align: center; }
@@ -125,6 +122,9 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('nav ul li a');
+
+      // Fly-in animation
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -134,7 +134,37 @@
         });
       }, { threshold: 0.1 });
       sections.forEach(section => observer.observe(section));
+
+      // Scroll spy for nav highlighting
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 120;
+          const sectionHeight = section.clientHeight;
+          if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+            current = section.getAttribute('id');
+          }
+        });
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+          }
+        });
+      });
+
+      // Smooth scrolling for nav links
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetSection = document.getElementById(targetId);
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        });
+      });
     });
+
+    // Prevent right-click & Ctrl+S
     document.addEventListener('contextmenu', event => event.preventDefault());
     document.addEventListener('keydown', function(e) {
       if (e.ctrlKey && (e.key === 's' || e.key === 'S')) {
@@ -190,11 +220,12 @@
   <section id="hobbies" class="fly-in-up">
     <h2>Hobbies & Interests</h2>
     <div class="skills">
+      <div class="card">Playing Cricket</div>
+      <div class="card">Playing Badminton</div>
       <div class="card">Digital Illustration</div>
-      <div class="card">Photography & Editing</div>
+      <div class="card">Photo Editing & Photography</div>
       <div class="card">Sketching & Storytelling</div>
-      <div class="card">Learning New Design Tools</div>
-      <div class="card">Creative Concept Development</div>
+      <div class="card">Exploring New Design Tools</div>
     </div>
   </section>
 
