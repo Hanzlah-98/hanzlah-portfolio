@@ -16,13 +16,45 @@
       color: #2c3e50;
       overflow-x: hidden;
     }
+
+    /* Navigation Bar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #1a2238;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 10px 20px;
+      display: flex;
+      gap: 25px;
+    }
+    nav ul li { display: inline; }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 12px;
+      transition: background 0.3s, color 0.3s;
+      border-radius: 5px;
+    }
+    nav ul li a:hover { background: #007BFF; color: white; }
+
     header, footer {
       background: #1a2238;
       color: white;
-      padding: 50px 20px;
+      padding: 100px 20px 50px 20px;
       text-align: center;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
+
     section {
       padding: 80px 20px;
       max-width: 1100px;
@@ -113,17 +145,34 @@
   </script>
 </head>
 <body>
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#hobbies">Hobbies</a></li>
+      <li><a href="#work">Work Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#design-projects">Design</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
   <header>
     <h1>Hanzlah Khaliq Dar</h1>
     <p>Student | Graphic Designer | Creative Visual Designer</p>
   </header>
 
-  <section>
+  <!-- About Me Section -->
+  <section id="about">
     <h2>About Me</h2>
     <p>I'm a passionate, disciplined, and professional Graphic Designer from Pakistan, with a strong foundation in science and creative design. I’ve earned prestigious certifications, led sports teams, and created visual projects that merge technology with real-world impact.</p>
   </section>
 
-  <section>
+  <!-- Skills Section -->
+  <section id="skills">
     <h2>Skills</h2>
     <div class="skills">
       <div class="card">Branding and Logo Design</div>
@@ -137,27 +186,44 @@
     </div>
   </section>
 
-  <!-- Work Experience Section -->
-  <section class="fly-in-up">
-    <h2>Work Experience</h2>
-    <ul>
-      <li><strong>Freelance Graphic Designer</strong> | 2022 – Present: Collaborated with clients to design logos, digital graphics, and social media content, delivering high-quality visual solutions while maintaining brand consistency.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Featured Projects</h2>
-    <div class="projects">
-      <div class="card"><a href="https://drive.google.com/file/d/1DWnBFmGVhP6-P--Y1dg-31sSBGJuftyw/view?usp=drive_link" target="_blank"><h3>Time Management Techniques</h3><p>A visual guide to help students manage time effectively using proven methods. Click to view (view-only).</p></a></div>
-      <div class="card"><a href="https://drive.google.com/file/d/1PgwXtn5xP4nhxLmfn_xqMjcnYclbpNFR/view?usp=drive_link" target="_blank"><h3>EcoTech</h3><p>Explains smart and eco-friendly technologies for modern homes. Click to view (view-only).</p></a></div>
-      <div class="card"><a href="https://drive.google.com/file/d/1QXcbnvTShk7D9xnRiFncTsrKrH5Gh5iI/view?usp=drive_link" target="_blank"><h3>Productivity Hacks</h3><p>Tips and techniques to increase productivity and reduce stress for students. Click to view (view-only).</p></a></div>
-      <div class="card"><a href="https://docs.google.com/presentation/d/1IEaSRQk2rgeqONOKwEsOY7p5ijGZGOO4/edit?usp=drive_link&ouid=103959473170019027329&rtpof=true&sd=true" target="_blank"><h3>Business Infographic</h3><p>Infographic presentation on the journey from idea to funding in a business. Click to view (view-only).</p></a></div>
-      <div class="card"><a href="https://docs.google.com/presentation/d/1ZaQeTsQKt4q8vLm5zIoXLaeXYFsnAAm_/edit?usp=drive_link&ouid=103959473170019027329&rtpof=true&sd=true" target="_blank"><h3>Spotify Slides</h3><p>Presentation exploring Spotify user data and listening trends globally. Click to view (view-only).</p></a></div>
-      <div class="card"><a href="https://docs.google.com/presentation/d/1oU9y_aoJ1RRPmbCpnWOESXIXv81ydj_A/edit?usp=drive_link&ouid=103959473170019027329&rtpof=true&sd=true" target="_blank"><h3>Fruit Pie Template</h3><p>Creative template with colorful designs for product-based presentations. Click to view (view-only).</p></a></div>
+  <!-- Hobbies Section -->
+  <section id="hobbies" class="fly-in-up">
+    <h2>Hobbies & Interests</h2>
+    <div class="skills">
+      <div class="card">Digital Illustration</div>
+      <div class="card">Photography & Editing</div>
+      <div class="card">Sketching & Storytelling</div>
+      <div class="card">Learning New Design Tools</div>
+      <div class="card">Creative Concept Development</div>
     </div>
   </section>
 
-  <!-- Design Projects -->
+  <!-- Work Experience Section -->
+  <section id="work" class="fly-in-up">
+    <h2>Work Experience</h2>
+    <ul>
+      <li>
+        <strong>Freelance Graphic Designer</strong> | 2022 – Present: 
+        Collaborated with clients to design logos, digital graphics, social media posts, and visual branding assets. 
+        Delivered high-quality visual solutions while maintaining brand consistency. 
+        Managed multiple projects simultaneously, meeting tight deadlines and exceeding client expectations. 
+        Consulted with clients to understand their vision, providing creative input and iterative design improvements. 
+        Built a portfolio of versatile projects ranging from minimal illustrations to marketing graphics for small businesses.
+      </li>
+    </ul>
+  </section>
+
+  <!-- Featured Projects Section -->
+  <section id="projects">
+    <h2>Featured Projects</h2>
+    <div class="projects">
+      <div class="card"><a href="#"><h3>Time Management Techniques</h3><p>A visual guide to help students manage time effectively using proven methods.</p></a></div>
+      <div class="card"><a href="#"><h3>EcoTech</h3><p>Explains smart and eco-friendly technologies for modern homes.</p></a></div>
+      <div class="card"><a href="#"><h3>Productivity Hacks</h3><p>Tips and techniques to increase productivity and reduce stress for students.</p></a></div>
+    </div>
+  </section>
+
+  <!-- Design Projects Section -->
   <section id="design-projects" class="fly-in-up">
     <h2>Design Projects</h2>
     <div class="projects">
@@ -177,7 +243,8 @@
     </p>
   </section>
 
-  <section>
+  <!-- Achievements Section -->
+  <section id="achievements">
     <h2>Achievements</h2>
     <ul>
       <li>4 Science Distinctions from Principal (2023–2025)</li>
@@ -199,19 +266,8 @@
     </div>
   </section>
 
-  <!-- Hobbies Section -->
-  <section class="fly-in-up">
-    <h2>Hobbies & Interests</h2>
-    <div class="skills">
-      <div class="card">Digital Illustration</div>
-      <div class="card">Photography & Editing</div>
-      <div class="card">Sketching & Storytelling</div>
-      <div class="card">Learning New Design Tools</div>
-      <div class="card">Creative Concept Development</div>
-    </div>
-  </section>
-
-  <section>
+  <!-- Contact Section -->
+  <section id="contact">
     <h2>Contact Me</h2>
     <p>If you'd like to collaborate or want custom design work, feel free to reach out!</p>
     <p>Email: <a href="mailto:hanzlahdar98@gmail.com">hanzlahdar98@gmail.com</a></p>
