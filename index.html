@@ -19,11 +19,11 @@
 
     /* Navigation Bar */
     nav {
-      position: fixed;
+      position: sticky;
       top: 0;
       left: 0;
       width: 100%;
-      background: #1a2238; 
+      background: #1a2238;
       z-index: 1000;
       display: flex;
       justify-content: center;
@@ -137,17 +137,17 @@
 
       // Scroll spy for nav highlighting
       window.addEventListener('scroll', () => {
-        let current = '';
+        let currentSectionId = '';
         sections.forEach(section => {
-          const sectionTop = section.offsetTop - 120;
-          const sectionHeight = section.clientHeight;
+          const sectionTop = section.offsetTop - 150;
+          const sectionHeight = section.offsetHeight;
           if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
-            current = section.getAttribute('id');
+            currentSectionId = section.getAttribute('id');
           }
         });
         navLinks.forEach(link => {
           link.classList.remove('active');
-          if (link.getAttribute('href') === '#' + current) {
+          if (link.getAttribute('href') === '#' + currentSectionId) {
             link.classList.add('active');
           }
         });
@@ -182,7 +182,6 @@
       <li><a href="#skills">Skills</a></li>
       <li><a href="#hobbies">Hobbies</a></li>
       <li><a href="#work">Work Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
       <li><a href="#design-projects">Design</a></li>
       <li><a href="#achievements">Achievements</a></li>
       <li><a href="#certificates">Certificates</a></li>
@@ -242,16 +241,6 @@
         Built a portfolio of versatile projects ranging from minimal illustrations to marketing graphics for small businesses.
       </li>
     </ul>
-  </section>
-
-  <!-- Featured Projects Section -->
-  <section id="projects">
-    <h2>Featured Projects</h2>
-    <div class="projects">
-      <div class="card"><a href="#"><h3>Time Management Techniques</h3><p>A visual guide to help students manage time effectively using proven methods.</p></a></div>
-      <div class="card"><a href="#"><h3>EcoTech</h3><p>Explains smart and eco-friendly technologies for modern homes.</p></a></div>
-      <div class="card"><a href="#"><h3>Productivity Hacks</h3><p>Tips and techniques to increase productivity and reduce stress for students.</p></a></div>
-    </div>
   </section>
 
   <!-- Design Projects Section -->
