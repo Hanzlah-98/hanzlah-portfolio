@@ -31,10 +31,7 @@
       transform: translateY(40px);
       transition: all 1s ease-in-out;
     }
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    section.visible { opacity: 1; transform: translateY(0); }
     h1, h2 {
       color: #1a2238;
       text-align: center;
@@ -53,19 +50,9 @@
       box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
       transition: transform 0.5s, box-shadow 0.3s;
     }
-    .card:hover {
-      transform: scale(1.04);
-      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15);
-    }
-    .card a {
-      text-decoration: none;
-      color: inherit;
-    }
-    a {
-      color: #0066cc;
-      text-decoration: none;
-      font-weight: 600;
-    }
+    .card:hover { transform: scale(1.04); box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15); }
+    .card a { text-decoration: none; color: inherit; }
+    a { color: #0066cc; text-decoration: none; font-weight: 600; }
     a:hover { text-decoration: underline; }
     ul { padding-left: 20px; line-height: 1.7; }
     p { line-height: 1.8; }
@@ -75,7 +62,6 @@
       0% { opacity: 0; transform: translateY(50px); }
       100% { opacity: 1; transform: translateY(0); }
     }
-
     .fly-in-up {
       animation: flyInUp 1.2s ease-out forwards;
       opacity: 0;
@@ -83,23 +69,9 @@
     }
 
     /* Certificates layout */
-    #certificates {
-      padding: 40px 20px;
-      max-width: 800px;
-      margin: auto;
-      text-align: center;
-    }
-
-    .cert-title {
-      font-size: 28px;
-      color: #222;
-      margin-bottom: 30px;
-    }
-
-    .certificate {
-      margin-bottom: 30px;
-    }
-
+    #certificates { padding: 40px 20px; max-width: 800px; margin: auto; text-align: center; }
+    .cert-title { font-size: 28px; color: #222; margin-bottom: 30px; }
+    .certificate { margin-bottom: 30px; }
     .view-button {
       display: inline-block;
       padding: 12px 24px;
@@ -110,28 +82,12 @@
       font-weight: bold;
       transition: background-color 0.3s ease;
     }
-
-    .view-button:hover {
-      background-color: #0056b3;
-    }
+    .view-button:hover { background-color: #0056b3; }
 
     /* Design Projects Section */
-    #design-projects {
-      text-align: center;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    #design-projects img {
-      width: 100%;
-      border-radius: 12px;
-      margin: 15px 0;
-      transition: transform 0.4s ease;
-    }
-
-    #design-projects img:hover {
-      transform: scale(1.03);
-    }
+    #design-projects { text-align: center; max-width: 1000px; margin: auto; }
+    #design-projects img { width: 100%; border-radius: 12px; margin: 15px 0; transition: transform 0.4s ease; }
+    #design-projects img:hover { transform: scale(1.03); }
   </style>
 
   <script>
@@ -164,7 +120,7 @@
 
   <section>
     <h2>About Me</h2>
-    <p>I'm a passionate, disciplined  and professional Graphic  Designer from Pakistan, with a strong foundation in science and creative design. I’ve earned prestigious certifications, led sports teams, and created visual projects that merge technology with real-world impact.</p>
+    <p>I'm a passionate, disciplined, and professional Graphic Designer from Pakistan, with a strong foundation in science and creative design. I’ve earned prestigious certifications, led sports teams, and created visual projects that merge technology with real-world impact.</p>
   </section>
 
   <section>
@@ -181,6 +137,14 @@
     </div>
   </section>
 
+  <!-- Work Experience Section -->
+  <section class="fly-in-up">
+    <h2>Work Experience</h2>
+    <ul>
+      <li><strong>Freelance Graphic Designer</strong> | 2022 – Present: Collaborated with clients to design logos, digital graphics, and social media content, delivering high-quality visual solutions while maintaining brand consistency.</li>
+    </ul>
+  </section>
+
   <section>
     <h2>Featured Projects</h2>
     <div class="projects">
@@ -192,27 +156,26 @@
       <div class="card"><a href="https://docs.google.com/presentation/d/1oU9y_aoJ1RRPmbCpnWOESXIXv81ydj_A/edit?usp=drive_link&ouid=103959473170019027329&rtpof=true&sd=true" target="_blank"><h3>Fruit Pie Template</h3><p>Creative template with colorful designs for product-based presentations. Click to view (view-only).</p></a></div>
     </div>
   </section>
- <!-- Design Projects -->
-<section id="design-projects" class="fly-in-up">
-  <h2>Design Projects</h2>
-  <div class="projects">
-    <div class="card">
-      <h3>Simple Illustration</h3>
-      <img src="first.png" alt="Simple Illustration">
-      <p>A minimal flat-style illustration showing clean design, color harmony, and balance.</p>
-    </div>
-    <div class="card">
-      <h3>Poster Design</h3>
-      <img src="poster.png" alt="Poster Design">
-      <p>A cybersecurity awareness poster educating users about online scams with bold typography.</p>
-    </div>
-  </div>
 
-  <p style="text-align:center; margin-top:30px; font-size:1.05rem; color:#555;">
-    <em>Note:</em> These are only a few samples of my design work. I’ve completed many other creative projects across different styles and formats — feel free to contact me for more examples or collaborations.
-  </p>
-</section>
-
+  <!-- Design Projects -->
+  <section id="design-projects" class="fly-in-up">
+    <h2>Design Projects</h2>
+    <div class="projects">
+      <div class="card">
+        <h3>Simple Illustration</h3>
+        <img src="first.png" alt="Simple Illustration">
+        <p>A minimal flat-style illustration showing clean design, color harmony, and balance.</p>
+      </div>
+      <div class="card">
+        <h3>Poster Design</h3>
+        <img src="poster.png" alt="Poster Design">
+        <p>A cybersecurity awareness poster educating users about online scams with bold typography.</p>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:30px; font-size:1.05rem; color:#555;">
+      <em>Note:</em> These are only a few samples of my design work. I’ve completed many other creative projects across different styles and formats — feel free to contact me for more examples or collaborations.
+    </p>
+  </section>
 
   <section>
     <h2>Achievements</h2>
@@ -236,9 +199,21 @@
     </div>
   </section>
 
+  <!-- Hobbies Section -->
+  <section class="fly-in-up">
+    <h2>Hobbies & Interests</h2>
+    <div class="skills">
+      <div class="card">Digital Illustration</div>
+      <div class="card">Photography & Editing</div>
+      <div class="card">Sketching & Storytelling</div>
+      <div class="card">Learning New Design Tools</div>
+      <div class="card">Creative Concept Development</div>
+    </div>
+  </section>
+
   <section>
     <h2>Contact Me</h2>
-    <p>If you'd like to collaborate or want custom design/presentation work, feel free to reach out!</p>
+    <p>If you'd like to collaborate or want custom design work, feel free to reach out!</p>
     <p>Email: <a href="mailto:hanzlahdar98@gmail.com">hanzlahdar98@gmail.com</a></p>
     <p>Phone: +923297146727</p>
     <p>Location: Gujranwala, Pakistan</p>
