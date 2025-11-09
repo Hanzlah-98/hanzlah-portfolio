@@ -1,315 +1,446 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Hanzlah Khaliq Dar - Professional Portfolio</title>
-<meta name="robots" content="noindex, noimageindex">
-<meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hanzlah Dar — Portfolio</title>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Manrope:wght@400;600;800&display=swap');
-* { box-sizing: border-box; scroll-behavior: smooth; }
-body {
-  margin: 0;
-  font-family: 'Manrope', sans-serif;
-  background: linear-gradient(to right, #f3f4f7, #dde6f2);
-  color: #2c3e50;
-  overflow-x: hidden;
-}
+  <!-- AOS for scroll animations -->
+  <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
 
-/* Navigation Bar */
-nav {
-  position: sticky;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: #1a2238;
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 10px 20px;
-  display: flex;
-  gap: 25px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-nav ul li { display: inline; }
-nav ul li a {
-  color: white; 
-  text-decoration: none;
-  font-weight: 600;
-  padding: 8px 12px;
-  transition: background 0.3s, color 0.3s;
-  border-radius: 5px;
-}
-nav ul li a:hover { background: #007BFF; color: white; } 
-nav ul li a.active { background: #007BFF; color: white; } 
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
 
-header, footer {
-  background: #1a2238;
-  color: white;
-  padding: 100px 20px 50px 20px;
-  text-align: center;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
+  <style>
+    :root{
+      --bg:#f7fbfe;
+      --card:#ffffff;
+      --text:#0d1b2a;
+      --muted:#556273;
+      --accent:#1f78d1;
+      --accent-2:#6aa0d6;
+      --glass: rgba(255,255,255,0.7);
+    }
 
-section {
-  padding: 80px 20px;
-  max-width: 1100px;
-  margin: auto;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 1s ease-in-out;
-}
-section.visible { opacity: 1; transform: translateY(0); }
-h1, h2 {
-  color: #1a2238;
-  text-align: center;
-  margin-bottom: 30px;
-  font-weight: 800;
-}
-.skills, .projects {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-}
-.card {
-  background: white;
-  padding: 25px;
-  border-radius: 16px;
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
-  transition: transform 0.5s, box-shadow 0.3s;
-}
-.card:hover { transform: scale(1.04); box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15); }
-.card a { text-decoration: none; color: inherit; }
-a { color: #0066cc; text-decoration: none; font-weight: 600; }
-a:hover { text-decoration: underline; }
-ul { padding-left: 20px; line-height: 1.7; }
-p { line-height: 1.8; }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;}
+    a{color:inherit}
+    img{max-width:100%;display:block}
 
-/* Fly-in animation */
-@keyframes flyInUp {
-  0% { opacity: 0; transform: translateY(50px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-.fly-in-up { animation: flyInUp 1.2s ease-out forwards; opacity: 0; transform: translateY(50px); }
+/* ---------- NAV ---------- */
+    nav{
+      position:sticky;top:0;z-index:60;
+      background:linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.55));
+      border-bottom:1px solid rgba(13,27,42,0.04);
+      backdrop-filter: blur(6px);
+    }
+    .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text)}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+    .nav-links{display:flex;gap:18px;align-items:center}
+    .nav-links a{font-weight:600;text-decoration:none;color:var(--muted);transition:color .18s}
+    .nav-links a:hover{color:var(--text)}
+    .cta-small{padding:8px 12px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700}
 
-/* Certificates layout */
-#certificates { padding: 40px 20px; max-width: 800px; margin: auto; text-align: center; }
-.cert-title { font-size: 28px; color: #222; margin-bottom: 30px; }
-.certificate { margin-bottom: 30px; }
-.view-button {
-  display: inline-block;
-  padding: 12px 24px;
-  background-color: #007BFF;
-  color: white;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-.view-button:hover { background-color: #0056b3; }
+/* ---------- HERO ---------- */
+    .hero{max-width:1100px;margin:36px auto;padding:20px;display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center}
+    .hero-left h1{font-size:2.1rem;margin:0 0 8px}
+    .hero-left p.lead{color:var(--muted);margin:0 0 16px;font-size:1.02rem}
+    .btn{display:inline-block;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600;background:var(--accent);color:#fff;box-shadow:0 10px 26px rgba(31,120,209,0.12)}
+    .btn.secondary{background:transparent;color:var(--accent);border:1px solid rgba(31,120,209,0.12)}
+    .hero-right{background:linear-gradient(180deg,rgba(31,120,209,0.04),rgba(106,160,214,0.02));border-radius:18px;padding:18px;box-shadow:0 8px 28px rgba(13,27,42,0.04)}
+    .hero-card{border-radius:12px;overflow:hidden;background:var(--card);padding:12px}
+    .hero-thumb{width:100%;height:260px;object-fit:cover;border-radius:8px}
 
-/* Design Projects Section */
-#design-projects { text-align: center; max-width: 1000px; margin: auto; }
-#design-projects img { width: 100%; border-radius: 12px; margin: 15px 0; transition: transform 0.4s ease; }
-#design-projects img:hover { transform: scale(1.03); }
+/* ---------- SECTIONS ---------- */
+    .container{max-width:1100px;margin:56px auto;padding:0 20px}
+    .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+    .section-title{font-size:1.4rem;color:var(--text);margin:0}
+    .section-sub{color:var(--muted);font-size:0.95rem}
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-  header, footer { padding: 80px 15px 40px 15px; }
-  nav ul { gap: 10px; padding: 10px 5px; }
-  nav ul li a { padding: 6px 10px; font-size: 14px; }
-  section { padding: 60px 15px; }
-  h1 { font-size: 2rem; }
-  h2 { font-size: 1.5rem; }
-  .skills, .projects { grid-template-columns: 1fr; gap: 20px; }
-  .card { padding: 20px; }
-  #certificates { padding: 30px 10px; }
-  .view-button { padding: 10px 20px; font-size: 14px; }
-}
-</style>
+/* About */
+    .about{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:start}
+    .card{background:var(--card);padding:20px;border-radius:14px;box-shadow:0 8px 30px rgba(13,27,42,0.04)}
+    .bio p{color:var(--muted);line-height:1.6}
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('nav ul li a');
+/* Skills & Hobbies */
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .skills-list{display:flex;flex-wrap:wrap;gap:10px}
+    .skill{background:linear-gradient(90deg, rgba(31,120,209,0.08), rgba(106,160,214,0.03));padding:8px 12px;border-radius:10px;font-weight:700;color:var(--text)}
+    .hobbies{display:flex;gap:12px;flex-wrap:wrap}
+    .hobby{background:#fff;padding:10px 16px;border-radius:12px;box-shadow:0 8px 24px rgba(13,27,42,0.03);font-weight:700}
 
-  // Fly-in animation
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  sections.forEach(section => observer.observe(section));
+/* Previous Experience */
+    .experience .exp-item{margin-bottom:12px}
+    .exp-item .role{font-weight:700;color:var(--accent)}
+    .exp-item .info{color:var(--muted);font-size:0.95rem}
 
-  // Scroll spy for nav highlighting
-  window.addEventListener('scroll', () => {
-    let currentSectionId = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 150;
-      const sectionHeight = section.offsetHeight;
-      if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
-        currentSectionId = section.getAttribute('id');
-      }
-    });
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + currentSectionId) {
-        link.classList.add('active');
-      }
-    });
-  });
+/* Projects grid */
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+    .project-card{
+      background:var(--card);border-radius:12px;overflow:hidden;text-decoration:none;color:inherit;
+      box-shadow:0 12px 30px rgba(13,27,42,0.04);transition:transform .36s cubic-bezier(.2,.9,.2,1),box-shadow .36s;
+      display:flex;flex-direction:column;
+    }
+    .project-card:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(13,27,42,0.08)}
+    .project-thumb{height:180px;object-fit:cover;display:block;transition:transform .6s ease}
+    .project-card:hover .project-thumb{transform:scale(1.03)}
+    .project-body{padding:14px 16px}
+    .project-body h3{margin:0 0 8px;font-size:1.02rem}
+    .project-body p{margin:0;color:var(--muted);font-size:0.95rem;line-height:1.45}
 
-  // Smooth scrolling for nav links
-  navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      const targetId = this.getAttribute('href').substring(1);
-      const targetSection = document.getElementById(targetId);
-      targetSection.scrollIntoView({ behavior: 'smooth' });
-    });
-  });
-});
+/* Modal */
+    .modal-wrap{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:120}
+    .modal-wrap.active{display:flex}
+    .modal-backdrop{position:absolute;inset:0;background:rgba(8,12,20,0.45);backdrop-filter:blur(4px);opacity:0;transition:opacity .28s}
+    .modal{position:relative;max-width:920px;width:92%;background:linear-gradient(180deg,var(--card),#fff);border-radius:14px;transform:translateY(20px) scale(.98);opacity:0;transition:opacity .28s, transform .32s}
+    .modal.open{transform:translateY(0) scale(1);opacity:1}
+    .modal-body{display:flex;flex-direction:column;padding:14px}
+    .modal-img{width:100%;max-height:72vh;object-fit:contain;border-radius:8px;background:#f2f6fb}
+    .modal-info{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px}
+    .modal-caption{font-weight:700;color:var(--text)}
+    .modal-actions{display:flex;gap:8px}
+    .btn-ghost{padding:8px 12px;border-radius:10px;border:1px solid rgba(13,27,42,0.06);background:transparent;font-weight:600}
+    .btn-primary{padding:8px 12px;border-radius:10px;background:var(--accent);color:#fff;font-weight:700}
 
-// Prevent right-click & Ctrl+S
-document.addEventListener('contextmenu', event => event.preventDefault());
-document.addEventListener('keydown', function(e) {
-  if (e.ctrlKey && (e.key === 's' || e.key === 'S')) {
-    e.preventDefault();
-    alert('Downloads are restricted. Content is protected.');
-  }
-});
-</script>
+/* Contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 420px;gap:20px;align-items:start}
+    .form-field{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+    .form-field input,.form-field textarea{border:1px solid rgba(13,27,42,0.06);padding:12px;border-radius:10px;font-size:0.96rem}
+    .note{font-size:0.92rem;color:var(--muted)}
+
+/* Footer */
+    footer{padding:28px 20px;text-align:center;color:var(--muted);margin-top:40px}
+
+/* Responsive */
+    @media (max-width:1000px){.hero{grid-template-columns:1fr;}.about{grid-template-columns:1fr}.contact-grid{grid-template-columns:1fr}.nav-links{display:none}}
+    @media (max-width:520px){.project-thumb{height:160px}}
+  </style>
 </head>
-
 <body>
-  <!-- Navigation -->
+
+  <!-- NAV -->
   <nav>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#hobbies">Hobbies</a></li>
-      <li><a href="#work">Work Experience</a></li>
-      <li><a href="#design-projects">Design</a></li>
-      <li><a href="#achievements">Achievements</a></li>
-      <li><a href="#certificates">Certificates</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <div class="nav-inner">
+      <a class="brand" href="#hero"><div class="logo">HD</div><div style="line-height:1">
+        <div style="font-weight:700">Hanzlah Dar</div>
+        <div style="font-size:.82rem;color:var(--muted)">Graphic Designer</div>
+      </div></a>
+
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Previous Experience</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <a class="cta-small" href="#contact">Hire Me</a>
+    </div>
   </nav>
 
-  <header>
-    <h1>Hanzlah Khaliq Dar</h1>
-    <p>Student | Graphic Designer | Creative Visual Designer</p>
-  </header>
-
-  <section id="about">
-    <h2>About Me</h2>
-    <p>I am a detail-oriented Graphic Designer with a strong passion for
- developing visually compelling and purposeful designs that
- communicate ideas and elevate brand identity. With experience in
- branding, digital graphics, print materials, and social media content,
- I integrate creativity with strategic thinking to deliver aesthetically
- refined and results-driven solutions.
- Proficient in Adobe Photoshop, Illustrator, and Canva, I remain
- committed to continuous learning and staying current with evolving
- design trends and technologies. I strive to produce high-quality
- visual solutions that enhance brand presence, engage target
- audiences, and support the overall goals of each project.</p>
-  </section>
-
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="skills">
-      <div class="card">Branding and Logo Design</div>
-      <div class="card">Adobe Illustrator</div>
-      <div class="card">Canva</div>
-      <div class="card">Adobe Photoshop</div>
-      <div class="card">Graphic Design</div>
-      <div class="card">Adaptability and Continuous Learning</div>
-      <div class="card">Attention to Detail</div>
-      <div class="card">Creative Concept Development</div>
-    </div>
-  </section>
-
-  <section id="hobbies" class="fly-in-up">
-    <h2>Hobbies & Interests</h2>
-    <div class="skills">
-      <div class="card">Playing Cricket</div>
-      <div class="card">Playing Badminton</div>
-      <div class="card">Digital Illustration</div>
-      <div class="card">Photo Editing & Photography</div>
-      <div class="card">Sketching & Storytelling</div>
-      <div class="card">Exploring New Design Tools</div>
-    </div>
-  </section>
-
-  <section id="work" class="fly-in-up">
-    <h2>Work Experience</h2>
-    <ul>
-      <li><strong>Freelance Graphic Designer</strong> | 2022 – Present: Collaborated with clients to design logos, digital graphics, social media posts, and visual branding assets. Delivered high-quality visual solutions while maintaining brand consistency. Managed multiple projects simultaneously, meeting tight deadlines and exceeding client expectations. Built a versatile portfolio of projects ranging from minimal illustrations to marketing graphics for small businesses.</li>
-    </ul>
-  </section>
-
-  <section id="design-projects" class="fly-in-up">
-    <h2>Design Projects</h2>
-    <div class="projects">
-      <div class="card">
-        <h3>Simple Illustration</h3>
-        <img src="first.png" alt="Simple Illustration">
-        <p>A minimal flat-style illustration showing clean design, color harmony, and balance.</p>
+  <!-- HERO -->
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero-left" data-aos="fade-right" data-aos-delay="80">
+        <h1>Hi — I’m Hanzlah Dar.</h1>
+        <p class="lead">I design minimal logos and 2D illustrations with clean visual storytelling. I deliver brand-ready art for web and print.</p>
+        <div style="display:flex;gap:12px;margin-top:14px">
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn secondary" href="#contact">Contact</a>
+        </div>
       </div>
-      <div class="card">
-        <h3>Poster Design</h3>
-        <img src="poster.png" alt="Poster Design">
-        <p>A cybersecurity awareness poster educating users about online scams with bold typography.</p>
+
+      <div class="hero-right" data-aos="fade-left" data-aos-delay="120">
+        <div class="hero-card">
+          <img src="images/2d-illustration-2.png" alt="Featured" class="hero-thumb">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+            <div>
+              <div style="font-weight:700">Featured</div>
+              <div style="color:var(--muted);font-size:.95rem">2D Illustration — Morning Vibes</div>
+            </div>
+            <div style="color:var(--muted);font-size:.9rem">2025</div>
+          </div>
+        </div>
       </div>
-    </div>
-    <p style="text-align:center; margin-top:30px; font-size:1.05rem; color:#555;">
-      <em>Note:</em> These are only a few samples of my design work. I’ve completed many other creative projects across different styles and formats — feel free to contact me for more examples or collaborations.
-    </p>
-  </section>
+    </section>
 
-  <section id="achievements">
-    <h2>Achievements</h2>
-    <ul>
-      <li>4 Science Distinctions from Principal (2023–2025)</li>
-      <li>Harvard CS50 Certificate in Computer Science</li>
-      <li>MS Excel Essentials – Harvard edX</li>
-      <li>National Games Finalist: Cricket, Badminton, Race, Archery</li>
-      <li>Team Leader – Seed Plantation Drive (1000+ seeds)</li>
-    </ul>
-  </section>
+    <!-- ABOUT + SKILLS -->
+    <section class="container" id="about" data-aos="fade-up">
+      <div class="section-header">
+        <h3 class="section-title">About</h3>
+        <div class="section-sub">A little about me and where I design from</div>
+      </div>
 
-  <section id="certificates" class="fly-in-up">
-    <h2 class="cert-title">Certificates</h2>
-    <div class="certificate">
-      <a href="AI%20For%20Beginners.pdf#toolbar=0" target="_blank" class="view-button">View Certificate – AI for Beginners</a>
-    </div>
-    <div class="certificate">
-      <a href="Effective%20Presentations.pdf#toolbar=0" target="_blank" class="view-button">View Certificate – Effective Presentations</a>
-    </div>
-  </section>
+      <div class="about">
+        <div class="card bio">
+          <h3 style="margin-bottom:8px">About Me</h3>
+          <p>I’m Hanzlah Dar — a passionate graphic designer focused on logos, 2D illustrations, and clean visual storytelling. I enjoy turning concepts into simple, memorable visuals that work across web and print.</p>
 
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <p>If you'd like to collaborate or want custom design work, feel free to reach out!</p>
-    <p>Email: <a href="mailto:hanzlahdar98@gmail.com">hanzlahdar98@gmail.com</a></p>
-    <p>Phone: +923297146727</p>
-    <p>Location: Gujranwala, Pakistan</p>
-  </section>
+          <div style="display:flex;gap:12px;margin-top:14px;flex-wrap:wrap">
+            <div style="font-weight:700">Location</div>
+            <div class="muted">Pakistan</div>
+          </div>
+          <div style="margin-top:8px"><strong>Email:</strong> <a href="mailto:hanzlahdar@gmail.com">hanzlahdar@gmail.com</a></div>
+        </div>
 
+        <div>
+          <div class="card" style="margin-bottom:14px" id="skills" data-aos="fade-left">
+            <h4 style="margin:0 0 10px">Skills</h4>
+            <div class="skills-list">
+              <div class="skill">Logo Design</div>
+              <div class="skill">2D Illustration</div>
+              <div class="skill">Adobe Illustrator</div>
+              <div class="skill">Canva Design</div>
+              <div class="skill">Branding</div>
+              <div class="skill">Social Graphics</div>
+            </div>
+          </div>
+
+          <div class="card" data-aos="fade-left" data-aos-delay="60">
+            <h4 style="margin:0 0 10px">Hobbies</h4>
+            <div class="hobbies">
+              <div class="hobby">Playing Cricket</div>
+              <div class="hobby">Badminton</div>
+              <div class="hobby">Sketching</div>
+              <div class="hobby">Watching Design Tutorials</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="container" id="projects" data-aos="fade-up">
+      <div class="section-header">
+        <h3 class="section-title">Projects</h3>
+        <div class="section-sub">Click a project to preview — you can also open the full image in a new tab from the modal.</div>
+      </div>
+
+      <div class="projects-grid" style="margin-top:14px">
+        <!-- Penguin Illustration -->
+        <div class="project-card" data-proj="Penguin Illustration" data-src="images/penguin.png" data-aos="fade-up" data-aos-delay="40">
+          <img class="project-thumb" src="images/penguin.png" alt="Penguin Illustration">
+          <div class="project-body">
+            <h3>Penguin Illustration</h3>
+            <p>A cute, playful penguin illustration with bold shapes and soft shadows — great for children’s posters and mascots.</p>
+          </div>
+        </div>
+
+        <!-- Poster Design -->
+        <div class="project-card" data-proj="Poster Design" data-src="images/poster.png" data-aos="fade-up" data-aos-delay="80">
+          <img class="project-thumb" src="images/poster.png" alt="Poster Design">
+          <div class="project-body">
+            <h3>Poster Design</h3>
+            <p>A poster design that balances typography and imagery to create a strong visual hierarchy — suitable for print and social sharing.</p>
+          </div>
+        </div>
+
+        <!-- Morning Vibes -->
+        <div class="project-card" data-proj="Morning Vibes" data-src="images/2d-illustration-2.png" data-aos="fade-up" data-aos-delay="120">
+          <img class="project-thumb" src="images/2d-illustration-2.png" alt="Morning Vibes">
+          <div class="project-body">
+            <h3>2D Illustration — Morning Vibes</h3>
+            <p>Soft pastel tones and minimal shapes capture a peaceful morning — stretching near a sunlit window with a cup of coffee.</p>
+          </div>
+        </div>
+
+        <!-- Daydream -->
+        <div class="project-card" data-proj="A Day in a Dreamer’s Life" data-src="images/2d-illustration-3.png" data-aos="fade-up" data-aos-delay="160">
+          <img class="project-thumb" src="images/2d-illustration-3.png" alt="Daydream">
+          <div class="project-body">
+            <h3>2D Illustration — A Day in a Dreamer’s Life</h3>
+            <p>A dreamy vector artwork that visualizes imagination through light shapes and floating thoughts — part of a series.</p>
+          </div>
+        </div>
+
+        <!-- Urban Freelancer Logo -->
+        <div class="project-card" data-proj="Urban Freelancer Logo" data-src="images/logo-3.jpg" data-aos="fade-up" data-aos-delay="200">
+          <img class="project-thumb" src="images/logo-3.jpg" alt="Urban Freelancer Logo">
+          <div class="project-body">
+            <h3>Logo — Urban Freelancer</h3>
+            <p>Minimal, modern logo blending geometric city forms and clean typography. Designed for versatility across web and print.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PREVIOUS EXPERIENCE -->
+    <section class="container" id="experience" data-aos="fade-up">
+      <div class="section-header">
+        <h3 class="section-title">Previous Experience</h3>
+        <div class="section-sub">Real projects and freelance work</div>
+      </div>
+
+      <div class="experience" style="margin-top:12px">
+        <div class="exp-item card">
+          <div class="role">Freelance Graphic Designer</div>
+          <div class="info">2022 — Present</div>
+          <p style="margin-top:10px;color:var(--muted)">Worked with clients to create logos, social media kits, and illustration series. Focus on brand clarity and visual impact.</p>
+        </div>
+
+        <div class="exp-item card">
+          <div class="role">Social Media Designer</div>
+          <div class="info">2021 — 2022</div>
+          <p style="margin-top:10px;color:var(--muted)">Produced high-engagement social graphics and templates for small businesses and creators.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="container" id="contact" data-aos="fade-up">
+      <div class="section-header">
+        <h3 class="section-title">Contact</h3>
+        <div class="section-sub">Send me a message — opens your email client (works without server)</div>
+      </div>
+
+      <div class="contact-grid" style="margin-top:12px">
+        <div class="card">
+          <form id="contactForm">
+            <div class="form-field"><label class="note">Your name</label><input id="name" type="text" required placeholder="Your name"></div>
+            <div class="form-field"><label class="note">Your email</label><input id="email" type="email" required placeholder="you@example.com"></div>
+            <div class="form-field"><label class="note">Subject</label><input id="subject" type="text" required placeholder="Project, question or say hi"></div>
+            <div class="form-field"><label class="note">Message</label><textarea id="message" required placeholder="Write your message..."></textarea></div>
+
+            <div style="display:flex;gap:10px;align-items:center">
+              <button type="submit" class="btn">Send Message</button>
+              <div id="formNote" class="note"></div>
+            </div>
+          </form>
+        </div>
+
+        <div>
+          <div class="card">
+            <h4 style="margin:0 0 8px">Contact Info</h4>
+            <div class="note">Email: <strong><a href="mailto:hanzlahdar@gmail.com">hanzlahdar@gmail.com</a></strong></div>
+            <div style="margin-top:12px" class="note">If you prefer forms that submit without opening an email client, you can set up Formspree or EmailJS — I can add that for you (plug-and-play).</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
   <footer>
-    <p>© 2025 Hanzlah Khaliq Dar | All content protected under copyright. No redistribution or reproduction allowed.</p>
+    <div style="max-width:1100px;margin:0 auto;padding:0 20px">
+      <div style="margin-bottom:6px">© <span id="year"></span> Hanzlah Dar</div>
+      <div class="note">Designed & built by you — ready for GitHub Pages.</div>
+    </div>
   </footer>
+
+  <!-- Modal (preview) -->
+  <div id="modal" class="modal-wrap" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal" role="dialog" aria-modal="true">
+      <div class="modal-body">
+        <img id="modalImage" class="modal-img" src="" alt="">
+        <div class="modal-info">
+          <div class="modal-caption" id="modalCaption">Project Title</div>
+          <div class="modal-actions">
+            <button class="btn-ghost" id="openNew">Open in new tab</button>
+            <button class="btn-ghost" id="downloadBtn">Download</button>
+            <button class="btn-primary" id="closeModal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AOS + JS -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({ once:true, duration:900, easing:'cubic-bezier(.2,.9,.2,1)' });
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Modal logic
+    const modal = document.getElementById('modal');
+    const modalImage = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+    const openNewBtn = document.getElementById('openNew');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const closeModalBtn = document.getElementById('closeModal');
+    const backdrop = document.querySelector('.modal-backdrop');
+
+    function openModal(title, src){
+      modal.classList.add('active');
+      // slight delay to allow CSS transitions
+      setTimeout(()=> document.querySelector('.modal').classList.add('open'), 10);
+      modalImage.src = src;
+      modalImage.alt = title;
+      modalCaption.textContent = title;
+      openNewBtn.onclick = () => window.open(src, '_blank', 'noopener');
+      downloadBtn.onclick = () => {
+        // create temporary link to download
+        const link = document.createElement('a');
+        link.href = src;
+        link.download = src.split('/').pop();
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      };
+      // close on ESC
+      document.addEventListener('keydown', escHandler);
+    }
+
+    function closeModal(){
+      document.querySelector('.modal').classList.remove('open');
+      setTimeout(()=> modal.classList.remove('active'), 220);
+      modalImage.src = '';
+      document.removeEventListener('keydown', escHandler);
+    }
+
+    function escHandler(e){
+      if(e.key === 'Escape') closeModal();
+    }
+
+    backdrop.addEventListener('click', closeModal);
+    closeModalBtn.addEventListener('click', closeModal);
+
+    // click on project to open modal
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const title = card.getAttribute('data-proj') || card.querySelector('h3')?.innerText || 'Project';
+        const src = card.getAttribute('data-src') || card.querySelector('img')?.src;
+        if(src) openModal(title, src);
+      });
+      // keyboard accessibility
+      card.setAttribute('tabindex', '0');
+      card.addEventListener('keydown', (e) => { if(e.key === 'Enter') card.click(); });
+    });
+
+    // clicking image in modal opens in new tab as well
+    modalImage.addEventListener('click', () => {
+      if(modalImage.src) window.open(modalImage.src, '_blank', 'noopener');
+    });
+
+    // Contact form (mailto) - functional
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = encodeURIComponent(document.getElementById('name').value.trim());
+      const from = encodeURIComponent(document.getElementById('email').value.trim());
+      const subject = encodeURIComponent(document.getElementById('subject').value.trim());
+      const message = encodeURIComponent(document.getElementById('message').value.trim());
+
+      const recipient = 'hanzlahdar@gmail.com';
+      const bodyLines = [
+        'Name: ' + decodeURIComponent(name),
+        'Email: ' + decodeURIComponent(from),
+        '',
+        decodeURIComponent(message)
+      ].join('\\n');
+
+      const mailto = `mailto:${recipient}?subject=${subject}&body=${encodeURIComponent(bodyLines)}`;
+      window.location.href = mailto;
+
+      const note = document.getElementById('formNote');
+      note.textContent = 'Opening your email app...';
+      setTimeout(()=> note.textContent = '', 3800);
+    });
+
+    // Optional: close modal when resizing large (avoid stuck state)
+    window.addEventListener('resize', ()=> {
+      if(window.innerWidth < 420 && modal.classList.contains('active')) closeModal();
+    });
+  </script>
 </body>
 </html>
