@@ -1,491 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hanzlah Portfolio</title>
-    <script
-      src="https://kit.fontawesome.com/64d58efce2.js"
-      crossorigin="anonymous"
-    ></script>
-    <style>
-      /* =============================
-         Global Styles
-      ============================= */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Poppins", sans-serif;
-        scroll-behavior: smooth;
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hanzlah Khaliq Dar - Professional Portfolio</title>
+<meta name="robots" content="noindex, noimageindex">
+<meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Manrope:wght@400;600;800&display=swap');
+* { box-sizing: border-box; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: 'Manrope', sans-serif;
+  background: linear-gradient(to right, #f3f4f7, #dde6f2);
+  color: #2c3e50;
+  overflow-x: hidden;
+}
+
+/* Navigation Bar */
+nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #1a2238;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 10px 20px;
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+nav ul li { display: inline; }
+nav ul li a {
+  color: white; 
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 12px;
+  transition: background 0.3s, color 0.3s;
+  border-radius: 5px;
+}
+nav ul li a:hover { background: #007BFF; color: white; } 
+nav ul li a.active { background: #007BFF; color: white; } 
+
+header, footer {
+  background: #1a2238;
+  color: white;
+  padding: 100px 20px 50px 20px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+section {
+  padding: 80px 20px;
+  max-width: 1100px;
+  margin: auto;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease-in-out;
+}
+section.visible { opacity: 1; transform: translateY(0); }
+h1, h2 {
+  color: #1a2238;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 800;
+}
+.skills, .projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+  transition: transform 0.5s, box-shadow 0.3s;
+}
+.card:hover { transform: scale(1.04); box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15); }
+.card a { text-decoration: none; color: inherit; }
+a { color: #0066cc; text-decoration: none; font-weight: 600; }
+a:hover { text-decoration: underline; }
+ul { padding-left: 20px; line-height: 1.7; }
+p { line-height: 1.8; }
+
+/* Fly-in animation */
+@keyframes flyInUp {
+  0% { opacity: 0; transform: translateY(50px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.fly-in-up { animation: flyInUp 1.2s ease-out forwards; opacity: 0; transform: translateY(50px); }
+
+/* Certificates layout */
+#certificates { padding: 40px 20px; max-width: 800px; margin: auto; text-align: center; }
+.cert-title { font-size: 28px; color: #222; margin-bottom: 30px; }
+.certificate { margin-bottom: 30px; }
+.view-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #007BFF;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+.view-button:hover { background-color: #0056b3; }
+
+/* Design Projects Section */
+#design-projects { text-align: center; max-width: 1000px; margin: auto; }
+#design-projects img { width: 100%; border-radius: 12px; margin: 15px 0; transition: transform 0.4s ease; }
+#design-projects img:hover { transform: scale(1.03); }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  header, footer { padding: 80px 15px 40px 15px; }
+  nav ul { gap: 10px; padding: 10px 5px; }
+  nav ul li a { padding: 6px 10px; font-size: 14px; }
+  section { padding: 60px 15px; }
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+  .skills, .projects { grid-template-columns: 1fr; gap: 20px; }
+  .card { padding: 20px; }
+  #certificates { padding: 30px 10px; }
+  .view-button { padding: 10px 20px; font-size: 14px; }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('nav ul li a');
+
+  // Fly-in animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
       }
+    });
+  }, { threshold: 0.1 });
+  sections.forEach(section => observer.observe(section));
 
-      body {
-        background-color: #f5f5f5;
-        color: #333;
+  // Scroll spy for nav highlighting
+  window.addEventListener('scroll', () => {
+    let currentSectionId = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 150;
+      const sectionHeight = section.offsetHeight;
+      if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+        currentSectionId = section.getAttribute('id');
       }
-
-      /* =============================
-         Header & Navigation
-      ============================= */
-      header {
-        width: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 999;
-        background: #ffffff;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + currentSectionId) {
+        link.classList.add('active');
       }
+    });
+  });
 
-      nav {
-        width: 90%;
-        margin: auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 15px 0;
-      }
+  // Smooth scrolling for nav links
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetSection = document.getElementById(targetId);
+      targetSection.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+});
 
-      nav .logo {
-        font-size: 24px;
-        font-weight: 700;
-        color: #00adb5;
-      }
+// Prevent right-click & Ctrl+S
+document.addEventListener('contextmenu', event => event.preventDefault());
+document.addEventListener('keydown', function(e) {
+  if (e.ctrlKey && (e.key === 's' || e.key === 'S')) {
+    e.preventDefault();
+    alert('Downloads are restricted. Content is protected.');
+  }
+});
+</script>
+</head>
 
-      nav ul {
-        list-style: none;
-        display: flex;
-        gap: 25px;
-      }
+<body>
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#hobbies">Hobbies</a></li>
+      <li><a href="#work">Work Experience</a></li>
+      <li><a href="#design-projects">Design</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-      nav ul li a {
-        text-decoration: none;
-        color: #333;
-        font-weight: 500;
-        transition: 0.3s;
-      }
+  <header>
+    <h1>Hanzlah Khaliq Dar</h1>
+    <p>Student | Graphic Designer | Creative Visual Designer</p>
+  </header>
 
-      nav ul li a:hover,
-      nav ul li a.active {
-        color: #00adb5;
-      }
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I am a detail-oriented Graphic Designer with a strong passion for
+ developing visually compelling and purposeful designs that
+ communicate ideas and elevate brand identity. With experience in
+ branding, digital graphics, print materials, and social media content,
+ I integrate creativity with strategic thinking to deliver aesthetically
+ refined and results-driven solutions.
+ Proficient in Adobe Photoshop, Illustrator, and Canva, I remain
+ committed to continuous learning and staying current with evolving
+ design trends and technologies. I strive to produce high-quality
+ visual solutions that enhance brand presence, engage target
+ audiences, and support the overall goals of each project.</p>
+  </section>
 
-      /* =============================
-         Home Section
-      ============================= */
-      .home {
-        width: 100%;
-        height: 100vh;
-        background: linear-gradient(to bottom right, #e3f2fd, #f9f9f9);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding-top: 80px;
-      }
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div class="card">Branding and Logo Design</div>
+      <div class="card">Adobe Illustrator</div>
+      <div class="card">Canva</div>
+      <div class="card">Adobe Photoshop</div>
+      <div class="card">Graphic Design</div>
+      <div class="card">Adaptability and Continuous Learning</div>
+      <div class="card">Attention to Detail</div>
+      <div class="card">Creative Concept Development</div>
+    </div>
+  </section>
 
-      .home .content {
-        max-width: 600px;
-      }
+  <section id="hobbies" class="fly-in-up">
+    <h2>Hobbies & Interests</h2>
+    <div class="skills">
+      <div class="card">Playing Cricket</div>
+      <div class="card">Playing Badminton</div>
+      <div class="card">Digital Illustration</div>
+      <div class="card">Photo Editing & Photography</div>
+      <div class="card">Sketching & Storytelling</div>
+      <div class="card">Exploring New Design Tools</div>
+    </div>
+  </section>
 
-      .home h1 {
-        font-size: 48px;
-        color: #222;
-      }
+  <section id="work" class="fly-in-up">
+    <h2>Work Experience</h2>
+    <ul>
+      <li><strong>Freelance Graphic Designer</strong> | 2022 – Present: Collaborated with clients to design logos, digital graphics, social media posts, and visual branding assets. Delivered high-quality visual solutions while maintaining brand consistency. Managed multiple projects simultaneously, meeting tight deadlines and exceeding client expectations. Built a versatile portfolio of projects ranging from minimal illustrations to marketing graphics for small businesses.</li>
+    </ul>
+  </section>
 
-      .home h1 span {
-        color: #00adb5;
-      }
-
-      .home p {
-        margin: 15px 0;
-        font-size: 18px;
-        color: #555;
-      }
-
-      .buttons {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-      }
-
-      .btn,
-      .btn2 {
-        padding: 12px 25px;
-        border-radius: 30px;
-        text-decoration: none;
-        font-weight: 500;
-        transition: 0.3s;
-      }
-
-      .btn {
-        background-color: #00adb5;
-        color: #fff;
-      }
-
-      .btn:hover {
-        background-color: #00939b;
-      }
-
-      .btn2 {
-        border: 2px solid #00adb5;
-        color: #00adb5;
-      }
-
-      .btn2:hover {
-        background-color: #00adb5;
-        color: #fff;
-      }
-
-      /* =============================
-         Section Styles
-      ============================= */
-      section {
-        width: 90%;
-        margin: auto;
-        padding: 80px 0;
-        text-align: center;
-      }
-
-      h2 {
-        font-size: 36px;
-        color: #00adb5;
-        margin-bottom: 30px;
-      }
-
-      /* =============================
-         About
-      ============================= */
-      .about p {
-        max-width: 800px;
-        margin: auto;
-        line-height: 1.7;
-        color: #555;
-      }
-
-      /* =============================
-         Skills
-      ============================= */
-      .skills-container {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 40px;
-      }
-
-      .skill {
-        background: #ffffff;
-        padding: 30px;
-        border-radius: 20px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        width: 220px;
-        transition: transform 0.3s ease;
-      }
-
-      .skill:hover {
-        transform: translateY(-10px);
-      }
-
-      .skill i {
-        font-size: 40px;
-        color: #00adb5;
-        margin-bottom: 15px;
-      }
-
-      .skill h3 {
-        font-size: 20px;
-      }
-
-      /* =============================
-         Projects
-      ============================= */
-      .projects-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 40px;
-      }
-
-      .project {
-        width: 320px;
-        background: #ffffff;
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
-      }
-
-      .project:hover {
-        transform: translateY(-10px);
-      }
-
-      .project img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-      }
-
-      .project h3 {
-        margin: 15px 0 5px 0;
-        color: #00adb5;
-        font-size: 20px;
-      }
-
-      .project p {
-        padding: 0 20px 20px;
-        color: #555;
-        font-size: 15px;
-      }
-
-      /* =============================
-         Work Experience
-      ============================= */
-      .work-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-      }
-
-      .work-item {
-        width: 80%;
-        background: #ffffff;
-        border-radius: 15px;
-        padding: 25px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        text-align: left;
-      }
-
-      .work-item h3 {
-        color: #00adb5;
-        margin-bottom: 10px;
-      }
-
-      /* =============================
-         Contact
-      ============================= */
-      .contact-form {
-        max-width: 500px;
-        margin: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-      }
-
-      .contact-form input,
-      .contact-form textarea {
-        width: 100%;
-        padding: 12px;
-        border-radius: 10px;
-        border: 1px solid #ccc;
-        outline: none;
-        font-size: 15px;
-      }
-
-      .contact-form button {
-        background-color: #00adb5;
-        color: white;
-        border: none;
-        padding: 12px;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: 0.3s;
-      }
-
-      .contact-form button:hover {
-        background-color: #00939b;
-      }
-
-      /* =============================
-         Footer
-      ============================= */
-      footer {
-        background-color: #222;
-        color: #fff;
-        text-align: center;
-        padding: 15px 0;
-      }
-    </style>
-  </head>
-
-  <body>
-    <header>
-      <nav>
-        <div class="logo">Hanzlah Dar</div>
-        <ul>
-          <li><a href="#home" class="active">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#work">Work Experience</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
-
-    <section id="home" class="home">
-      <div class="content">
-        <h1>Hi, I'm <span>Hanzlah Dar</span></h1>
-        <p>Graphic Designer | Logo Designer | Canva Expert</p>
-        <div class="buttons">
-          <a href="#projects" class="btn">View My Work</a>
-          <a href="#contact" class="btn2">Contact Me</a>
-        </div>
+  <section id="design-projects" class="fly-in-up">
+    <h2>Design Projects</h2>
+    <div class="projects">
+      <div class="card">
+        <h3>Simple Illustration</h3>
+        <img src="first.png" alt="Simple Illustration">
+        <p>A minimal flat-style illustration showing clean design, color harmony, and balance.</p>
       </div>
-    </section>
-
-    <section id="about" class="about">
-      <h2>About Me</h2>
-      <p>
-        I’m Hanzlah Dar, a passionate graphic designer specializing in modern
-        logos, creative visuals, and digital branding. I love turning ideas into
-        unique, eye-catching designs that help brands stand out.
-      </p>
-    </section>
-
-    <section id="skills" class="skills">
-      <h2>Skills</h2>
-      <div class="skills-container">
-        <div class="skill">
-          <i class="fas fa-pen-nib"></i>
-          <h3>Logo Design</h3>
-        </div>
-        <div class="skill">
-          <i class="fas fa-brush"></i>
-          <h3>Canva Design</h3>
-        </div>
-        <div class="skill">
-          <i class="fas fa-palette"></i>
-          <h3>Social Media Posts</h3>
-        </div>
+      <div class="card">
+        <h3>Poster Design</h3>
+        <img src="poster.png" alt="Poster Design">
+        <p>A cybersecurity awareness poster educating users about online scams with bold typography.</p>
       </div>
-    </section>
+    </div>
+    <p style="text-align:center; margin-top:30px; font-size:1.05rem; color:#555;">
+      <em>Note:</em> These are only a few samples of my design work. I’ve completed many other creative projects across different styles and formats — feel free to contact me for more examples or collaborations.
+    </p>
+  </section>
 
-    <section id="projects" class="projects">
-      <h2>Projects</h2>
-      <div class="projects-container">
-        <div class="project">
-          <img src="images/penguin.jpg" alt="Penguin Illustration" />
-          <h3>Penguin Illustration</h3>
-          <p>
-            A fun and creative penguin illustration showcasing character design
-            skills.
-          </p>
-        </div>
+  <section id="achievements">
+    <h2>Achievements</h2>
+    <ul>
+      <li>4 Science Distinctions from Principal (2023–2025)</li>
+      <li>Harvard CS50 Certificate in Computer Science</li>
+      <li>MS Excel Essentials – Harvard edX</li>
+      <li>National Games Finalist: Cricket, Badminton, Race, Archery</li>
+      <li>Team Leader – Seed Plantation Drive (1000+ seeds)</li>
+    </ul>
+  </section>
 
-        <div class="project">
-          <img src="images/poster.jpg" alt="Poster Design" />
-          <h3>Poster Design</h3>
-          <p>
-            A clean, modern poster design combining color balance and
-            typography.
-          </p>
-        </div>
-      </div>
-    </section>
+  <section id="certificates" class="fly-in-up">
+    <h2 class="cert-title">Certificates</h2>
+    <div class="certificate">
+      <a href="AI%20For%20Beginners.pdf#toolbar=0" target="_blank" class="view-button">View Certificate – AI for Beginners</a>
+    </div>
+    <div class="certificate">
+      <a href="Effective%20Presentations.pdf#toolbar=0" target="_blank" class="view-button">View Certificate – Effective Presentations</a>
+    </div>
+  </section>
 
-    <section id="work" class="work">
-      <h2>Work Experience</h2>
-      <div class="work-container">
-        <div class="work-item">
-          <h3>Freelance Graphic Designer</h3>
-          <p>
-            Worked on multiple freelance projects creating custom designs for
-            clients worldwide. Specialized in logo design and branding visuals.
-          </p>
-        </div>
-      </div>
-    </section>
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <p>If you'd like to collaborate or want custom design work, feel free to reach out!</p>
+    <p>Email: <a href="mailto:hanzlahdar98@gmail.com">hanzlahdar98@gmail.com</a></p>
+    <p>Phone: +923297146727</p>
+    <p>Location: Gujranwala, Pakistan</p>
+  </section>
 
-    <section id="contact" class="contact">
-      <h2>Contact Me</h2>
-      <form
-        action="https://formspree.io/f/your-form-id"
-        method="POST"
-        class="contact-form"
-      >
-        <input type="text" name="name" placeholder="Your Name" required />
-        <input type="email" name="email" placeholder="Your Email" required />
-        <textarea
-          name="message"
-          rows="5"
-          placeholder="Your Message"
-          required
-        ></textarea>
-        <button type="submit" class="btn">Send Message</button>
-      </form>
-    </section>
-
-    <footer>
-      <p>© 2025 Hanzlah Dar. All rights reserved.</p>
-    </footer>
-
-    <script>
-      // =============================
-      // Navigation Active Link Highlight
-      // =============================
-      const sections = document.querySelectorAll("section");
-      const navLinks = document.querySelectorAll("nav ul li a");
-
-      window.addEventListener("scroll", () => {
-        let current = "";
-        sections.forEach((section) => {
-          const sectionTop = section.offsetTop - 100;
-          const sectionHeight = section.clientHeight;
-          if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-            current = section.getAttribute("id");
-          }
-        });
-        navLinks.forEach((link) => {
-          link.classList.remove("active");
-          if (link.getAttribute("href").includes(current)) {
-            link.classList.add("active");
-          }
-        });
-      });
-
-      // =============================
-      // Smooth Scroll Animation
-      // =============================
-      navLinks.forEach((link) => {
-        link.addEventListener("click", (e) => {
-          e.preventDefault();
-          const targetId = link.getAttribute("href");
-          const targetSection = document.querySelector(targetId);
-          window.scrollTo({
-            top: targetSection.offsetTop - 60,
-            behavior: "smooth",
-          });
-        });
-      });
-
-      // =============================
-      // Contact Form Submission (Formspree)
-      // =============================
-      const form = document.querySelector(".contact-form");
-      if (form) {
-        form.addEventListener("submit", (e) => {
-          e.preventDefault();
-          const formData = new FormData(form);
-          fetch(form.action, {
-            method: "POST",
-            body: formData,
-            headers: { Accept: "application/json" },
-          })
-            .then((response) => {
-              if (response.ok) {
-                alert("Message sent successfully!");
-                form.reset();
-              } else {
-                alert("There was a problem sending your message.");
-              }
-            })
-            .catch(() => {
-              alert("Network error. Please try again later.");
-            });
-        });
-      }
-    </script>
-  </body>
+  <footer>
+    <p>© 2025 Hanzlah Khaliq Dar | All content protected under copyright. No redistribution or reproduction allowed.</p>
+  </footer>
+</body>
 </html>
