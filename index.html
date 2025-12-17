@@ -101,41 +101,20 @@ p { line-height: 1.8; }
 .fly-in-up { animation: flyInUp 1.2s ease-out forwards; opacity: 0; transform: translateY(50px); }
 
 /* Certificates layout */
-#certificates { padding: 40px 20px; max-width: 1000px; margin: auto; text-align: center; }
+#certificates { padding: 40px 20px; max-width: 800px; margin: auto; text-align: center; }
 .cert-title { font-size: 28px; color: #222; margin-bottom: 30px; }
-
-.certificates-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
-  justify-items: center;
-}
-
-.certificate-card {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: #007BFF;
+.certificate { margin-bottom: 30px; }
+.view-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #007BFF;
   color: white;
-  font-weight: 600;
-  padding: 20px 15px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  transition: transform 0.3s, box-shadow 0.3s;
+  border-radius: 6px;
   text-decoration: none;
-  min-width: 150px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
-
-.certificate-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
-}
-
-.certificate-card p {
-  margin: 0;
-  font-size: 0.95rem;
-}
+.view-button:hover { background-color: #0056b3; }
 
 /* Design Projects Section */
 #design-projects { text-align: center; max-width: 1000px; margin: auto; }
@@ -153,7 +132,7 @@ p { line-height: 1.8; }
   .skills, .projects { grid-template-columns: 1fr; gap: 20px; }
   .card { padding: 20px; }
   #certificates { padding: 30px 10px; }
-  .certificate-card { padding: 15px 10px; font-size: 14px; }
+  .view-button { padding: 10px 20px; font-size: 14px; }
 }
 </style>
 
@@ -352,31 +331,30 @@ document.addEventListener('keydown', function(e) {
     </ul>
   </section>
 
-  <!-- Certificates Section -->
   <section id="certificates" class="fly-in-up">
     <h2 class="cert-title">Certificates</h2>
-    <div class="certificates-container">
-      <a href="DSTP_Certificate_ ZKJ2KYJMK.pdf#toolbar=0" target="_blank" class="certificate-card">
-        <p>Graphic Design</p>
-      </a>
-      <a href="Graphic Design For Beginners.pdf#toolbar=0" target="_blank" class="certificate-card">
-        <p>Graphic Design For Beginners</p>
-      </a>
-      <a href="hanzlah-dar-graphic-design-essentials-certificate.pdf#toolbar=0" target="_blank" class="certificate-card">
-        <p>Graphic Design Essentials</p>
-      </a>
-      <a href="hanzlah-dar-marketing-with-canva-certificate.pdf#toolbar=0" target="_blank" class="certificate-card">
-        <p>Marketing with Canva</p>
-      </a>
-      <a href="hanzlah-dar-meet-canva's-visual-suite-certificate.pdf#toolbar=0" target="_blank" class="certificate-card">
-        <p>Meet Canva’s Visual Suite</p>
-      </a>
-      <a href="AI%20For%20Beginners.pdf#toolbar=0" target="_blank" class="certificate-card">
-        <p>AI for Beginners</p>
-      </a>
-      <a href="Effective%20Presentations.pdf#toolbar=0" target="_blank" class="certificate-card">
-        <p>Effective Presentations</p>
-      </a>
+    
+    <div class="certificate">
+      <a href="DSTP_Certificate_ ZKJ2KYJMK.pdf#toolbar=0" target="_blank" class="view-button">View Certificate – Graphic Design</a>
+    </div>
+        <div class="certificate">
+      <a href="Graphic Design For Beginners.pdf#toolbar=0" target="_blank" class="view-button">View Certificate –  Graphic Design For Beginners</a>
+    </div>
+    
+    <div class="certificate">
+      <a href="hanzlah-dar-graphic-design-essentials-certificate.pdf#toolbar=0" target="_blank" class="view-button">View Certificate – Graphic Design Essentials</a>
+    </div>
+    <div class="certificate">
+      <a href="hanzlah-dar-marketing-with-canva-certificate.pdf#toolbar=0" target="_blank" class="view-button">View Certificate – Marketing with Canva</a>
+    </div>
+    <div class="certificate">
+      <a href="hanzlah-dar-meet-canva's-visual-suite-certificate.pdf#toolbar=0" target="_blank" class="view-button">View Certificate – Meet Canva’s Visual Suite</a>
+    </div>
+    <div class="certificate">
+      <a href="AI%20For%20Beginners.pdf#toolbar=0" target="_blank" class="view-button">View Certificate – AI for Beginners</a>
+    </div>
+    <div class="certificate">
+      <a href="Effective%20Presentations.pdf#toolbar=0" target="_blank" class="view-button">View Certificate – Effective Presentations</a>
     </div>
   </section>
 
@@ -389,4 +367,7 @@ document.addEventListener('keydown', function(e) {
   </section>
 
   <footer>
-   
+    <p>© 2025 Hanzlah Khaliq Dar | All content protected under copyright. No redistribution or reproduction allowed.</p>
+  </footer>
+</body>
+</html> 
