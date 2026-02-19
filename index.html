@@ -41,14 +41,14 @@ nav ul {
 }
 nav ul li { display: inline; }
 nav ul li a {
-  color: white; 
+  color: white;
   text-decoration: none;
   font-weight: 600;
   padding: 8px 12px;
   transition: background 0.3s, color 0.3s;
   border-radius: 5px;
 }
-nav ul li a:hover { background: #007BFF; color: white; } 
+nav ul li a:hover { background: #007BFF; color: white; }
 nav ul li a.active { background: #007BFF; color: white; }
 
 header, footer {
@@ -121,6 +121,153 @@ p { line-height: 1.8; }
 #design-projects img { width: 100%; border-radius: 12px; margin: 15px 0; transition: transform 0.4s ease; }
 #design-projects img:hover { transform: scale(1.03); }
 
+/* ── SOCIAL MEDIA SECTION ── */
+#social-media { max-width: 1100px; margin: auto; }
+
+.sm-intro {
+  text-align: center;
+  color: #555;
+  font-size: 1rem;
+  max-width: 700px;
+  margin: 0 auto 50px auto;
+  line-height: 1.8;
+}
+
+.sm-category { margin-bottom: 60px; }
+
+.sm-category-header { text-align: center; margin-bottom: 6px; }
+.sm-category-header h3 {
+  font-size: 1.3rem;
+  color: #1a2238;
+  font-weight: 800;
+  margin: 0 0 5px 0;
+}
+.sm-category-header p {
+  font-size: 0.88rem;
+  color: #888;
+  margin: 0 0 20px 0;
+}
+.sm-divider {
+  border: none;
+  border-top: 2px solid #1a2238;
+  width: 60px;
+  margin: 0 auto 30px auto;
+}
+
+/* Appverse 3-col grid */
+.sm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+}
+
+/* Poster 3-col equal grid */
+.sm-grid-posters {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+/* Cards match existing .card style exactly */
+.sm-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.5s, box-shadow 0.3s;
+  cursor: pointer;
+}
+.sm-card:hover {
+  transform: scale(1.04);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15);
+}
+.sm-card img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  height: 230px;
+  transition: transform 0.4s ease;
+}
+.sm-card.portrait img {
+  height: 370px;
+  object-position: top;
+}
+
+.sm-card-body { padding: 20px 22px 22px; }
+
+.sm-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 9px;
+}
+.tag-blue { background: #e8f1ff; color: #007BFF; }
+.tag-navy { background: #e8eaf0; color: #1a2238; }
+.tag-red  { background: #ffeaea; color: #cc2200; }
+
+.sm-card-body h4 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1a2238;
+  margin: 0 0 6px 0;
+}
+.sm-card-body p {
+  font-size: 0.84rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ── LIGHTBOX ── */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(26, 34, 56, 0.96);
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.lightbox.active { display: flex; }
+.lightbox img {
+  max-height: 88vh;
+  max-width: 88vw;
+  border-radius: 12px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  animation: lbIn 0.25s ease;
+}
+@keyframes lbIn {
+  from { opacity: 0; transform: scale(0.93); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.lightbox-close {
+  position: fixed;
+  top: 1.25rem; right: 1.75rem;
+  font-size: 2.4rem;
+  color: rgba(255,255,255,0.6);
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+  font-weight: 300;
+}
+.lightbox-close:hover { color: white; }
+.lightbox-caption {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%; transform: translateX(-50%);
+  color: rgba(255,255,255,0.5);
+  font-size: 0.82rem;
+  font-family: 'Manrope', sans-serif;
+  white-space: nowrap;
+  text-align: center;
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   header, footer { padding: 80px 15px 40px 15px; }
@@ -133,6 +280,11 @@ p { line-height: 1.8; }
   .card { padding: 20px; }
   #certificates { padding: 30px 10px; }
   .view-button { padding: 10px 20px; font-size: 14px; }
+  .sm-grid-posters { grid-template-columns: 1fr; }
+  .sm-card.portrait img { height: 280px; }
+}
+@media (max-width: 500px) {
+  .sm-grid { grid-template-columns: 1fr; }
 }
 </style>
 
@@ -141,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const sections = document.querySelectorAll('section');
   const navLinks = document.querySelectorAll('nav ul li a');
 
-  // Fly-in animation
+  // Fly-in / scroll animation
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -152,36 +304,48 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.1 });
   sections.forEach(section => observer.observe(section));
 
-  // Scroll spy for nav highlighting
+  // Scroll spy
   window.addEventListener('scroll', () => {
     let currentSectionId = '';
     sections.forEach(section => {
       const sectionTop = section.offsetTop - 150;
-      const sectionHeight = section.offsetHeight;
-      if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+      if (pageYOffset >= sectionTop && pageYOffset < sectionTop + section.offsetHeight) {
         currentSectionId = section.getAttribute('id');
       }
     });
     navLinks.forEach(link => {
       link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + currentSectionId) {
-        link.classList.add('active');
-      }
+      if (link.getAttribute('href') === '#' + currentSectionId) link.classList.add('active');
     });
   });
 
-  // Smooth scrolling for nav links
+  // Smooth scroll
   navLinks.forEach(link => {
     link.addEventListener('click', function(e) {
       e.preventDefault();
-      const targetId = this.getAttribute('href').substring(1);
-      const targetSection = document.getElementById(targetId);
-      targetSection.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById(this.getAttribute('href').substring(1)).scrollIntoView({ behavior: 'smooth' });
     });
   });
 });
 
-// Prevent right-click & Ctrl+S
+// Lightbox
+function openLightbox(card) {
+  const img = card.querySelector('img');
+  document.getElementById('lb-img').src = img.src;
+  document.getElementById('lb-caption').textContent = img.dataset.caption || '';
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e) {
+  if (e && e.target !== document.getElementById('lightbox') && !e.target.classList.contains('lightbox-close')) return;
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { document.getElementById('lightbox').classList.remove('active'); document.body.style.overflow = ''; }
+});
+
+// Protect content
 document.addEventListener('contextmenu', event => event.preventDefault());
 document.addEventListener('keydown', function(e) {
   if (e.ctrlKey && (e.key === 's' || e.key === 'S')) {
@@ -193,179 +357,307 @@ document.addEventListener('keydown', function(e) {
 </head>
 
 <body>
-  <!-- Navigation -->
-  <nav>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#hobbies">Hobbies</a></li>
-      <li><a href="#work">Work Experience</a></li>
-      <li><a href="#design-projects">Design</a></li>
-      <li><a href="#achievements">Achievements</a></li>
-      <li><a href="#certificates">Certificates</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
 
-  <header>
-    <h1>Hanzlah Khaliq Dar</h1>
-    <p>Student | Graphic Designer | Logo Designer | Illustrator | Creative Visual Designer</p>
-  </header>
+<nav>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#hobbies">Hobbies</a></li>
+    <li><a href="#work">Work Experience</a></li>
+    <li><a href="#design-projects">Design</a></li>
+    <li><a href="#social-media">Social Media</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#certificates">Certificates</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>Creative and results-driven Graphic Designer with 3+ years of experience developing compelling visual 
-identities for brands across entertainment, digital media, and marketing sectors. Proven expertise in creating 
-media portfolios, promotional campaigns, and brand systems that drive audience engagement and elevate 
-brand presence. Skilled at managing end-to-end design workflows from concept to delivery, with a strong 
-foundation in Adobe Creative Suite and modern design principles. Passionate about visual storytelling, 
+<header>
+  <h1>Hanzlah Khaliq Dar</h1>
+  <p>Student | Graphic Designer | Logo Designer | Illustrator | Creative Visual Designer</p>
+</header>
+
+<section id="about">
+  <h2>About Me</h2>
+  <p>Creative and results-driven Graphic Designer with 3+ years of experience developing compelling visual
+identities for brands across entertainment, digital media, and marketing sectors. Proven expertise in creating
+media portfolios, promotional campaigns, and brand systems that drive audience engagement and elevate
+brand presence. Skilled at managing end-to-end design workflows from concept to delivery, with a strong
+foundation in Adobe Creative Suite and modern design principles. Passionate about visual storytelling,
 innovative branding solutions, and creating designs that resonate with diverse audiences.</p>
-  </section>
+</section>
 
-  <section id="skills" class="fly-in-up">
-    <h2>Skills</h2>
-    <div class="skills">
-      <div class="card">Branding and Logo Design</div>
-      <div class="card">Adobe Illustrator</div>
-      <div class="card">Canva</div>
-      <div class="card">Adobe Photoshop</div>
-      <div class="card">Graphic Design</div>
-      <div class="card">Adaptability and Continuous Learning</div>
-      <div class="card">Attention to Detail</div>
-      <div class="card">Creative Concept Development</div>
-      <div class="card">Remote Work Collaboration</div>
-      <div class="card">Creative Problem-Solving</div>
-      <div class="card">Visual Design</div>
+<section id="skills" class="fly-in-up">
+  <h2>Skills</h2>
+  <div class="skills">
+    <div class="card">Branding and Logo Design</div>
+    <div class="card">Adobe Illustrator</div>
+    <div class="card">Canva</div>
+    <div class="card">Adobe Photoshop</div>
+    <div class="card">Graphic Design</div>
+    <div class="card">Adaptability and Continuous Learning</div>
+    <div class="card">Attention to Detail</div>
+    <div class="card">Creative Concept Development</div>
+    <div class="card">Remote Work Collaboration</div>
+    <div class="card">Creative Problem-Solving</div>
+    <div class="card">Visual Design</div>
+  </div>
+</section>
+
+<section id="hobbies" class="fly-in-up">
+  <h2>Hobbies &amp; Interests</h2>
+  <div class="skills">
+    <div class="card">Playing Cricket</div>
+    <div class="card">Playing Badminton</div>
+    <div class="card">Creative Designing / Digital Illustration</div>
+    <div class="card">Photo &amp; Video Editing</div>
+    <div class="card">Sketching &amp; Storytelling</div>
+    <div class="card">Exploring New Design Tools &amp; Techniques</div>
+    <div class="card">Continuous Learning</div>
+    <div class="card">Exploring Design Trends &amp; Color Theory</div>
+  </div>
+</section>
+
+<section id="work" class="fly-in-up">
+  <h2>Work Experience</h2>
+  <ul>
+    <li>
+      <strong>Graphic Design Intern</strong> | Developers Hub Corporation | December 2025 – January 2026
+      <p>Support the creative team in producing brand visuals, marketing materials, and campaign assets for clients in the technology and retail sectors.
+Contribute to rebranding initiatives that enhance brand clarity and visual impact across digital touchpoints and marketing channels.
+Participate in collaborative design critiques to refine creative direction, layout consistency, and overall visual communication.
+Assist in developing media portfolios and presentation materials that showcase client achievements and industry positioning.</p>
+    </li>
+    <li>
+      <strong>Graphic Design Intern</strong> | Rhombix Technologies | December 2025 – February 2026
+      <p>Assisting in logo design, promotional materials, and marketing visuals. Gaining hands-on experience in Adobe Illustrator, Photoshop, Canva, and creative project management while supporting team-led design initiatives.</p>
+    </li>
+    <li>
+      <strong>Freelance Graphic Designer</strong> | 2022 – Present
+      <p>Collaborated with various clients to create visually engaging designs that strengthen brand identity and communication. Designed logos, social media graphics, posters, and marketing materials with attention to quality, consistency, and client vision. Proficient in Adobe Photoshop, Illustrator, and Canva, I consistently deliver professional results while maintaining brand consistency and attention to detail.</p>
+    </li>
+  </ul>
+</section>
+
+<section id="design-projects" class="fly-in-up">
+  <h2>Design Projects</h2>
+  <div class="projects">
+    <div class="card">
+      <h3>Urban Freelancer Logo</h3>
+      <img src="urban-freelancer-logo.png" alt="Urban Freelancer Logo">
+      <p>Professional logo design featuring modern cityscape architecture with clean lines and contemporary styling.</p>
     </div>
-  </section>
-
-  <section id="hobbies" class="fly-in-up">
-    <h2>Hobbies & Interests</h2>
-    <div class="skills">
-      <div class="card">Playing Cricket</div>
-      <div class="card">Playing Badminton</div>
-      <div class="card">Creative Designing / Digital Illustration</div>
-      <div class="card">Photo & Video Editing</div>
-      <div class="card">Sketching & Storytelling</div>
-      <div class="card">Exploring New Design Tools & Techniques</div>
-      <div class="card">Continuous Learning</div>
-      <div class="card">Exploring Design Trends & Color Theory</div>
+    <div class="card">
+      <h3>Curalink Brand Identity</h3>
+      <img src="curalink-logo.png" alt="Curalink Logo">
+      <p>Medical technology brand logo with a modern stethoscope-inspired design in professional teal gradient.</p>
     </div>
-  </section>
+    <div class="card">
+      <h3>Blessed Friday Sale Poster</h3>
+      <img src="blessed-friday-sale.png" alt="Blessed Friday Sale">
+      <p>Eye-catching promotional poster with bold typography and 50% discount offer in vibrant burgundy and orange.</p>
+    </div>
+    <div class="card">
+      <h3>Luxury Apartments Advertisement</h3>
+      <img src="luxury-apartments.png" alt="Luxury Apartments">
+      <p>Real estate marketing design showcasing elevated living with modern architecture and professional layout.</p>
+    </div>
+    <div class="card">
+      <h3>Morning Routine Illustration</h3>
+      <img src="morning-illustration.png" alt="Morning Illustration">
+      <p>Peaceful 2D character illustration depicting a relaxing morning scene with warm, inviting colors.</p>
+    </div>
+    <div class="card">
+      <h3>Smog Awareness Campaign</h3>
+      <img src="smog-awareness.png" alt="Smog Awareness">
+      <p>Environmental awareness poster highlighting smog causes and effects with powerful visual messaging.</p>
+    </div>
+  </div>
+  <p style="text-align:center; margin-top:30px; font-size:1.05rem; color:#555;">
+    <em>Note:</em> These are only a few samples of my design work. I've completed many other creative projects across different styles and formats — feel free to contact me for more examples or collaborations.
+  </p>
+</section>
 
-  <section id="work" class="fly-in-up">
-    <h2>Work Experience</h2>
-    <ul>
-      <li>
-        <strong>Graphic Design Intern</strong> | Developers Hub Corporation | December 2025 – January 2026  
-        <p>Support the creative team in producing brand visuals, marketing materials, and campaign assets for clients in the technology and retail sectors
-Contribute to rebranding initiatives that enhance brand clarity and visual impact across digital touchpoints and marketing channels
-Participate in collaborative design critiques to refine creative direction, layout consistency, and overall visual communication
-Assist in developing media portfolios and presentation materials that showcase client achievements and industry positioning
-.</p>
-      </li>
-      <li>
-        <strong>Graphic Design Intern</strong> | Rhombix Technologies | December 2025 – Feburary 2026  
-        <p>Assisting in logo design, promotional materials, and marketing visuals. Gaining hands-on experience in Adobe Illustrator, Photoshop, Canva, and creative project management while supporting team-led design initiatives.</p>
-      </li>
-      <li>
-        <strong>Freelance Graphic Designer</strong> | 2022 – Present  
-        <p>Collaborated with various clients to create visually engaging designs that strengthen brand identity and communication. Designed logos, social media graphics, posters, and marketing materials with attention to quality, consistency, and client vision. I focus on crafting creative, high-quality designs that are both aesthetically appealing and strategically effective. Proficient in Adobe Photoshop, Illustrator, and Canva, I consistently deliver professional results while maintaining brand consistency and attention to detail. Through client collaboration and continuous learning, I have built a diverse portfolio that reflects creativity, precision, and a passion for visual storytelling.</p>
-      </li>
-    </ul>
-  </section>
+<!-- ── NEW: SOCIAL MEDIA & POSTER DESIGN ── -->
+<section id="social-media" class="fly-in-up">
+  <h2>Social Media &amp; Poster Design</h2>
+  <p class="sm-intro">
+    A collection of social media posts and promotional campaigns crafted for real clients — spanning tech company branding, Islamic content series, motivational posts, and cinematic horror film promotions.
+  </p>
 
-  <section id="design-projects" class="fly-in-up">
-    <h2>Design Projects</h2>
-    <div class="projects">
-      <div class="card">
-        <h3>Urban Freelancer Logo</h3>
-        <img src="urban-freelancer-logo.png" alt="Urban Freelancer Logo">
-        <p>Professional logo design featuring modern cityscape architecture with clean lines and contemporary styling.</p>
+  <!-- Appverse Technologies -->
+  <div class="sm-category">
+    <div class="sm-category-header">
+      <h3>Appverse Technologies — Social Media Campaign</h3>
+      <p>Instagram posts designed for a digital marketing &amp; tech agency's brand presence</p>
+    </div>
+    <hr class="sm-divider"/>
+    <div class="sm-grid">
+
+      <div class="sm-card" onclick="openLightbox(this)">
+        <img src="Instagram_Posts_20260124_232834_0000.png" alt="Jummah Post"
+             data-caption="Jummah / Surah Al-Kahf Post — Appverse Technologies"/>
+        <div class="sm-card-body">
+          <span class="sm-tag tag-navy">Islamic Series</span>
+          <h4>Jummah — Surah Al-Kahf</h4>
+          <p>Weekly Islamic reminder post with Quranic calligraphy and hadith reference.</p>
+        </div>
       </div>
-      <div class="card">
-        <h3>Curalink Brand Identity</h3>
-        <img src="curalink-logo.png" alt="Curalink Logo">
-        <p>Medical technology brand logo with a modern stethoscope-inspired design in professional teal gradient.</p>
-      </div>
-      <div class="card">
-        <h3>Blessed Friday Sale Poster</h3>
-        <img src="blessed-friday-sale.png" alt="Blessed Friday Sale">
-        <p>Eye-catching promotional poster with bold typography and 50% discount offer in vibrant burgundy and orange.</p>
-      </div>
-      <div class="card">
-        <h3>Luxury Apartments Advertisement</h3>
-        <img src="luxury-apartments.png" alt="Luxury Apartments">
-        <p>Real estate marketing design showcasing elevated living with modern architecture and professional layout.</p>
-      </div>
-      <div class="card">
-        <h3>Morning Routine Illustration</h3>
-        <img src="morning-illustration.png" alt="Morning Illustration">
-        <p>Peaceful 2D character illustration depicting a relaxing morning scene with warm, inviting colors.</p>
-      </div>
-      <div class="card">
-        <h3>Smog Awareness Campaign</h3>
-        <img src="smog-awareness.png" alt="Smog Awareness">
-        <p>Environmental awareness poster highlighting smog causes and effects with powerful visual messaging.</p>
-      </div>
-    </div>
-    <p style="text-align:center; margin-top:30px; font-size:1.05rem; color:#555;">
-      <em>Note:</em> These are only a few samples of my design work. I’ve completed many other creative projects across different styles and formats — feel free to contact me for more examples or collaborations.
-    </p>
-  </section>
 
-  <section id="achievements" class="fly-in-up">
-    <h2>Achievements</h2>
-    <ul>
-      <li>4 Science Distinction Certificates from College Principal (2023–2025)</li>
-      <li>Harvard CS50 Certificate in Computer Science</li>
-      <li>MS Excel Essentials – Harvard edX</li>
-      <li>National Games Finalist: Cricket, Badminton, Race, Archery</li>
-      <li>Team Leader – Seed Plantation Drive (1000+ seeds)</li>
-      <li>Team Captain - Provincial-Level National Games 2022-2023</li>
-      <li>Event Organizer – College Sports Day 08/2024</li>
-      <li>House Captain - College Sports Day 08/2024</li>
-      <li>Team Captain – 4-Time Champion, Local Cricket Tournaments 2022-2024</li>
-    </ul>
-  </section>
+      <div class="sm-card" onclick="openLightbox(this)">
+        <img src="quote_d_.png" alt="Quote Post"
+             data-caption="Motivational Quote Post — Appverse Technologies"/>
+        <div class="sm-card-body">
+          <span class="sm-tag tag-blue">Motivational</span>
+          <h4>Inspirational Quote Post</h4>
+          <p>Sky-backdrop quote design with bold layered typography encouraging action.</p>
+        </div>
+      </div>
 
-  <section id="certificates" class="fly-in-up">
-    <h2 class="cert-title">Certificates</h2>
-    
-    <div class="certificate">
-      <a href="DSTP_Certificate_ ZKJ2KYJMK.pdf#toolbar=0" target="_blank" class="view-button">View Certificate – Graphic Design</a>
-    </div>
-        <div class="certificate">
-      <a href="Graphic Design For Beginners.pdf#toolbar=0" target="_blank" class="view-button">View Certificate –  Graphic Design For Beginners</a>
-    </div>
-    
-    <div class="certificate">
-      <a href="hanzlah-dar-graphic-design-essentials-certificate.pdf#toolbar=0" target="_blank" class="view-button">View Certificate – Graphic Design Essentials</a>
-    </div>
-    <div class="certificate">
-      <a href="hanzlah-dar-marketing-with-canva-certificate.pdf#toolbar=0" target="_blank" class="view-button">View Certificate – Marketing with Canva</a>
-    </div>
-    <div class="certificate">
-      <a href="hanzlah-dar-meet-canva's-visual-suite-certificate.pdf#toolbar=0" target="_blank" class="view-button">View Certificate – Meet Canva’s Visual Suite</a>
-    </div>
-    <div class="certificate">
-      <a href="AI%20For%20Beginners.pdf#toolbar=0" target="_blank" class="view-button">View Certificate – AI for Beginners</a>
-    </div>
-    <div class="certificate">
-      <a href="Effective%20Presentations.pdf#toolbar=0" target="_blank" class="view-button">View Certificate – Effective Presentations</a>
-    </div>
-  </section>
+      <div class="sm-card" onclick="openLightbox(this)">
+        <img src="services_d_.png" alt="Services Post"
+             data-caption="7 Services One Solution — Appverse Technologies"/>
+        <div class="sm-card-body">
+          <span class="sm-tag tag-blue">Services</span>
+          <h4>7 Services, One Solution</h4>
+          <p>Visual showcase of all offered services — SEO, SEM, CRM, PPC, SMM, UI/UX, Web Dev.</p>
+        </div>
+      </div>
 
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <p>If you'd like to collaborate or want custom design work, feel free to reach out!</p>
-    <p>Email: <a href="mailto:hanzlahdar98@gmail.com">hanzlahdar98@gmail.com</a></p>
-    <p>Phone: +923297146727</p>
-    <p>Location: Gujranwala, Pakistan</p>
-  </section>
+      <div class="sm-card" onclick="openLightbox(this)">
+        <img src="time_d_.png" alt="Time Is Now Post"
+             data-caption="Time Is Now — Digital Marketing Post — Appverse Technologies"/>
+        <div class="sm-card-body">
+          <span class="sm-tag tag-blue">Campaign</span>
+          <h4>Time Is NOW — Digital Marketing</h4>
+          <p>Bold typographic urgency post urging businesses to adopt digital marketing.</p>
+        </div>
+      </div>
 
-  <footer>
-    <p>© 2025 Hanzlah Khaliq Dar | All content protected under copyright. No redistribution or reproduction allowed.</p>
-  </footer>
+      <div class="sm-card" onclick="openLightbox(this)">
+        <img src="web_app_post_d_.png" alt="Web Dev Post"
+             data-caption="We Build Stunning Websites — Appverse Technologies"/>
+        <div class="sm-card-body">
+          <span class="sm-tag tag-blue">Web Dev</span>
+          <h4>We Build Stunning Websites</h4>
+          <p>Clean editorial layout promoting custom, responsive &amp; scalable web solutions.</p>
+        </div>
+      </div>
+
+      <div class="sm-card" onclick="openLightbox(this)">
+        <img src="Feedback_d_.png" alt="Feedback Post"
+             data-caption="Feedback Wanted — Appverse Technologies"/>
+        <div class="sm-card-body">
+          <span class="sm-tag tag-blue">Engagement</span>
+          <h4>Feedback Wanted!</h4>
+          <p>Playful, colorful community engagement post inviting client feedback and ideas.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Whispering Shadows -->
+  <div class="sm-category">
+    <div class="sm-category-header">
+      <h3>Whispering Shadows — Horror Film Promotion</h3>
+      <p>Cinematic poster series for a NightStream Originals horror streaming release</p>
+    </div>
+    <hr class="sm-divider"/>
+    <div class="sm-grid-posters">
+
+      <div class="sm-card portrait" onclick="openLightbox(this)">
+        <img src="post_.png" alt="WS Teaser"
+             data-caption="Whispering Shadows — Teaser Post (March 2026)"/>
+        <div class="sm-card-body">
+          <span class="sm-tag tag-red">Teaser Post</span>
+          <h4>The Whispers Return</h4>
+          <p>Dark alley teaser post building anticipation for the March 31 premiere.</p>
+        </div>
+      </div>
+
+      <div class="sm-card portrait" onclick="openLightbox(this)">
+        <img src="poster.png" alt="WS Main Poster"
+             data-caption="Whispering Shadows — Official Poster"/>
+        <div class="sm-card-body">
+          <span class="sm-tag tag-red">Official Poster</span>
+          <h4>Some Secrets Never Die</h4>
+          <p>Main theatrical-style poster featuring the masked antagonist with cinematic lighting.</p>
+        </div>
+      </div>
+
+      <div class="sm-card portrait" onclick="openLightbox(this)">
+        <img src="character_post.png" alt="WS Character Poster"
+             data-caption="Whispering Shadows — The Watcher Character Poster"/>
+        <div class="sm-card-body">
+          <span class="sm-tag tag-red">Character Poster</span>
+          <h4>The Watcher</h4>
+          <p>Dramatic character reveal poster with atmospheric red glow and haunting tagline.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+  <img id="lb-img" src="" alt=""/>
+  <div class="lightbox-caption" id="lb-caption"></div>
+</div>
+
+<section id="achievements" class="fly-in-up">
+  <h2>Achievements</h2>
+  <ul>
+    <li>4 Science Distinction Certificates from College Principal (2023–2025)</li>
+    <li>Harvard CS50 Certificate in Computer Science</li>
+    <li>MS Excel Essentials – Harvard edX</li>
+    <li>National Games Finalist: Cricket, Badminton, Race, Archery</li>
+    <li>Team Leader – Seed Plantation Drive (1000+ seeds)</li>
+    <li>Team Captain - Provincial-Level National Games 2022-2023</li>
+    <li>Event Organizer – College Sports Day 08/2024</li>
+    <li>House Captain - College Sports Day 08/2024</li>
+    <li>Team Captain – 4-Time Champion, Local Cricket Tournaments 2022-2024</li>
+  </ul>
+</section>
+
+<section id="certificates" class="fly-in-up">
+  <h2 class="cert-title">Certificates</h2>
+  <div class="certificate">
+    <a href="DSTP_Certificate_ ZKJ2KYJMK.pdf#toolbar=0" target="_blank" class="view-button">View Certificate – Graphic Design</a>
+  </div>
+  <div class="certificate">
+    <a href="Graphic Design For Beginners.pdf#toolbar=0" target="_blank" class="view-button">View Certificate – Graphic Design For Beginners</a>
+  </div>
+  <div class="certificate">
+    <a href="hanzlah-dar-graphic-design-essentials-certificate.pdf#toolbar=0" target="_blank" class="view-button">View Certificate – Graphic Design Essentials</a>
+  </div>
+  <div class="certificate">
+    <a href="hanzlah-dar-marketing-with-canva-certificate.pdf#toolbar=0" target="_blank" class="view-button">View Certificate – Marketing with Canva</a>
+  </div>
+  <div class="certificate">
+    <a href="hanzlah-dar-meet-canva's-visual-suite-certificate.pdf#toolbar=0" target="_blank" class="view-button">View Certificate – Meet Canva's Visual Suite</a>
+  </div>
+  <div class="certificate">
+    <a href="AI%20For%20Beginners.pdf#toolbar=0" target="_blank" class="view-button">View Certificate – AI for Beginners</a>
+  </div>
+  <div class="certificate">
+    <a href="Effective%20Presentations.pdf#toolbar=0" target="_blank" class="view-button">View Certificate – Effective Presentations</a>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact Me</h2>
+  <p>If you'd like to collaborate or want custom design work, feel free to reach out!</p>
+  <p>Email: <a href="mailto:hanzlahdar98@gmail.com">hanzlahdar98@gmail.com</a></p>
+  <p>Phone: +923297146727</p>
+  <p>Location: Gujranwala, Pakistan</p>
+</section>
+
+<footer>
+  <p>© 2025 Hanzlah Khaliq Dar | All content protected under copyright. No redistribution or reproduction allowed.</p>
+</footer>
+
 </body>
-</html> 
+</html>
