@@ -85,6 +85,7 @@ h1, h2 {
   border-radius: 16px;
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
   transition: transform 0.5s, box-shadow 0.3s;
+  cursor: pointer;
 }
 .card:hover { transform: scale(1.04); box-shadow: 0 24px 48px rgba(0, 0, 0, 0.15); }
 .card a { text-decoration: none; color: inherit; }
@@ -331,8 +332,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // Lightbox
 function openLightbox(card) {
   const img = card.querySelector('img');
+  if (!img) return;
   document.getElementById('lb-img').src = img.src;
-  document.getElementById('lb-caption').textContent = img.dataset.caption || '';
+  document.getElementById('lb-caption').textContent = img.dataset.caption || img.alt || '';
   document.getElementById('lightbox').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
@@ -342,7 +344,10 @@ function closeLightbox(e) {
   document.body.style.overflow = '';
 }
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { document.getElementById('lightbox').classList.remove('active'); document.body.style.overflow = ''; }
+  if (e.key === 'Escape') {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
 });
 
 // Protect content
@@ -357,6 +362,13 @@ document.addEventListener('keydown', function(e) {
 </head>
 
 <body>
+
+<!-- ── LIGHTBOX HTML (was missing — this was the bug) ── -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+  <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+  <img id="lb-img" src="" alt="Preview" />
+  <div id="lb-caption" class="lightbox-caption"></div>
+</div>
 
 <nav>
   <ul>
@@ -411,63 +423,50 @@ document.addEventListener('keydown', function(e) {
   </div>
 </section>
 
-	<section id="selected" class="fly-in-up">
+<section id="selected" class="fly-in-up">
+  <h2>Selected Design Work</h2>
+  <div class="projects">
 
-	<h2>Selected Design Work</h2>
+    <!-- FIX: added onclick="openLightbox(this)" to all 3 cards below -->
+    <div class="card" onclick="openLightbox(this)">
+      <img src="curalink-logo.png" alt="Curalink Brand Identity">
+      <h3>Curalink Brand Identity</h3>
+      <p>
+        Medical technology brand logo with a modern stethoscope-inspired
+        symbol and professional teal gradient designed to represent healthcare,
+        innovation, and trust.
+      </p>
+    </div>
 
-	<div class="projects">
+    <div class="card" onclick="openLightbox(this)">
+      <img src="luxury-apartments.png" alt="Luxury Apartments Advertisement">
+      <h3>Luxury Apartments Advertisement</h3>
+      <p>
+        Real estate advertisement designed with elegant typography and
+        modern architecture visuals to communicate premium living and
+        attract property buyers.
+      </p>
+    </div>
 
-	<div class="card">
+    <div class="card" onclick="openLightbox(this)">
+      <img src="smog-awareness.png" alt="Smog Awareness Poster">
+      <h3>Smog Awareness Poster</h3>
+      <p>
+        Environmental awareness poster highlighting the harmful effects of
+        urban air pollution and encouraging public awareness through strong
+        visual storytelling.
+      </p>
+    </div>
 
-	<img src="curalink-logo.png">
-
-	<h3>Curalink Brand Identity</h3>
-
-<p>
-Medical technology brand logo with a modern stethoscope-inspired
-symbol and professional teal gradient designed to represent healthcare,
-innovation, and trust.
-</p>
-
-</div>
-
-
-<div class="card">
-
-<img src="luxury-apartments.png">
-
-<h3>Luxury Apartments Advertisement</h3>
-
-<p>
-Real estate advertisement designed with elegant typography and
-modern architecture visuals to communicate premium living and
-attract property buyers.
-</p>
-
-</div>
-
-
-<div class="card">
-
-<img src="smog-awareness.png">
-
-<h3>Smog Awareness Poster</h3>
-
-<p>
-Environmental awareness poster highlighting the harmful effects of
-urban air pollution and encouraging public awareness through strong
-visual storytelling.
-</p>
-</div>
-</div>
+  </div>
 </section>
+
 <!-- ── SOCIAL MEDIA DESIGN ── -->
 <section id="social-media" class="fly-in-up">
   <h2>Social Media Campaign Work</h2>
   <p class="sm-intro">
     A collection of social media posts and promotional campaigns crafted for real clients — including projects completed during my internship at Appverse Technologies.
   </p>
-
   <!-- Appverse Technologies -->
   <div class="sm-category">
     <div class="sm-category-header">
@@ -541,6 +540,7 @@ visual storytelling.
   </div>
 
 </section>
+
 <section id="work" class="fly-in-up">
   <h2>Work Experience</h2>
   <ul>
@@ -596,26 +596,23 @@ communication throughout the creative process.</p>
     <div class="card">Typography</div>
     <div class="card">Remote Work Collaboration</div>
     <div class="card">Creative Problem-Solving</div>
-	<div class="card">Creative Concept Development</div>
+    <div class="card">Creative Concept Development</div>
     <div class="card">Visual Design</div>
   </div>
 </section>
+
 <section id="services">
-
-<h2>Services</h2>
-
-<div class="skills">
-
-<div class="card">Logo Design</div>
-<div class="card">Brand Identity Design</div>
-<div class="card">Social Media Graphics</div>
-<div class="card">Social Media Post Design</div>
-<div class="card">Flyer Design</div>
-<div class="card">Brochure Design</div>
-
-</div>
-
+  <h2>Services</h2>
+  <div class="skills">
+    <div class="card">Logo Design</div>
+    <div class="card">Brand Identity Design</div>
+    <div class="card">Social Media Graphics</div>
+    <div class="card">Social Media Post Design</div>
+    <div class="card">Flyer Design</div>
+    <div class="card">Brochure Design</div>
+  </div>
 </section>
+
 <section id="certificates" class="fly-in-up">
   <h2 class="cert-title">Certificates</h2>
   <div class="certificate">
@@ -634,6 +631,7 @@ communication throughout the creative process.</p>
     <a href="hanzlah-dar-meet-canva's-visual-suite-certificate.pdf#toolbar=0" target="_blank" class="view-button">View Certificate – Meet Canva's Visual Suite</a>
   </div>
 </section>
+
 <section id="documents" class="fly-in-up">
   <h2 class="cert-title">Documents</h2>
 
@@ -660,13 +658,14 @@ communication throughout the creative process.</p>
     border-radius:8px;
     line-height:1.7;
   ">
-    “Hanzlah consistently demonstrated strong creative skills, attention to detail, and a clear understanding 
-    of visual communication and branding principles.”  
+    "Hanzlah consistently demonstrated strong creative skills, attention to detail, and a clear understanding 
+    of visual communication and branding principles."  
     <br><br>
     <strong>— Alizay Aliyy, HR Manager, Appverse Technologies</strong>
   </blockquote>
 
- <a href="LOR 1.pdf#toolbar=0" target="_blank" class="view-button">
+  <div class="certificate" style="margin-top:30px;">
+    <a href="LOR 1.pdf#toolbar=0" target="_blank" class="view-button">
       📝 View Letter of Recommendation
     </a>
   </div>
@@ -682,11 +681,12 @@ communication throughout the creative process.</p>
     border-radius:8px;
     line-height:1.7;
   ">
-    “Hanzlah consistently collaborated well, adapted quickly to new tools, and showed professionalism, making him a valuable asset for any organization..”  
+    "Hanzlah consistently collaborated well, adapted quickly to new tools, and showed professionalism, making him a valuable asset for any organization."  
     <br><br>
-    <strong>— Abdul Rafay, Founder & CEO, Rhombix Technologies</strong>
+    <strong>— Abdul Rafay, Founder &amp; CEO, Rhombix Technologies</strong>
   </blockquote>
 </section>
+
 <section id="achievements" class="fly-in-up">
   <h2>Achievements</h2>
   <ul>
@@ -701,6 +701,7 @@ communication throughout the creative process.</p>
     <li>Team Captain – 4-Time Champion, Local Cricket Tournaments 2022-2024</li>
   </ul>
 </section>
+
 <section id="contact">
   <h2>Contact Me</h2>
   <p>If you'd like to collaborate or want custom design work, feel free to reach out!</p>
@@ -712,5 +713,6 @@ communication throughout the creative process.</p>
 <footer>
   <p>© 2026 Hanzlah Khaliq Dar | All content protected under copyright. No redistribution or reproduction allowed.</p>
 </footer>
+
 </body>
 </html>
