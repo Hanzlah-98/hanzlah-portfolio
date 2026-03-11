@@ -235,7 +235,6 @@ p { line-height: 1.8; }
   justify-content: center;
   padding: 1rem;
 }
-.lightbox.active { display: flex; }
 .lightbox img {
   max-height: 88vh;
   max-width: 88vw;
@@ -329,25 +328,25 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Lightbox
+// Lightbox — bulletproof version
 function openLightbox(card) {
   const img = card.querySelector('img');
   if (!img) return;
-  document.getElementById('lb-img').src = img.src;
-  document.getElementById('lb-caption').textContent = img.dataset.caption || img.alt || '';
-  document.getElementById('lightbox').classList.add('active');
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lb-img');
+  const lbCap = document.getElementById('lb-caption');
+  lbImg.src = img.src;
+  lbCap.textContent = img.dataset.caption || img.alt || '';
+  lb.style.display = 'flex';
   document.body.style.overflow = 'hidden';
 }
-function closeLightbox(e) {
-  if (e && e.target !== document.getElementById('lightbox') && !e.target.classList.contains('lightbox-close')) return;
-  document.getElementById('lightbox').classList.remove('active');
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+  document.getElementById('lb-img').src = '';
   document.body.style.overflow = '';
 }
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    document.getElementById('lightbox').classList.remove('active');
-    document.body.style.overflow = '';
-  }
+  if (e.key === 'Escape') closeLightbox();
 });
 
 // Protect content
@@ -364,9 +363,9 @@ document.addEventListener('keydown', function(e) {
 <body>
 
 <!-- ── LIGHTBOX HTML (was missing — this was the bug) ── -->
-<div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
-  <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
-  <img id="lb-img" src="" alt="Preview" />
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+  <img id="lb-img" src="" alt="Preview" onclick="event.stopPropagation()" />
   <div id="lb-caption" class="lightbox-caption"></div>
 </div>
 
@@ -402,60 +401,64 @@ document.addEventListener('keydown', function(e) {
 
 <section id="featured" class="fly-in-up">
   <h2>Featured Project – Whispering Shadows Campaign</h2>
-  <p><b>Role:</b> Concept, Layout Design, Typography</p>
-  <p><b>Tools:</b> Illustrator, Photoshop, Canva</p>
-  <div class="projects">
-    <div class="card" onclick="openLightbox(this)">
-      <img src="The Whispers Return.png" alt="The Whispers Return Poster">
-      <h3>The Whispers Return</h3>
-      <p>Dark cinematic teaser poster designed to build suspense and anticipation for the horror film release using atmospheric lighting and mystery-driven composition.</p>
+  <p style="text-align:center;"><b>Role:</b> Concept, Layout Design, Typography &nbsp;|&nbsp; <b>Tools:</b> Illustrator, Photoshop, Canva</p>
+  <div class="sm-grid">
+    <div class="sm-card" onclick="openLightbox(this)">
+      <img src="The Whispers Return.png" alt="The Whispers Return Poster" data-caption="The Whispers Return — Whispering Shadows Campaign" style="height:320px;object-fit:cover;">
+      <div class="sm-card-body">
+        <span class="sm-tag tag-red">Horror</span>
+        <h4>The Whispers Return</h4>
+        <p>Dark cinematic teaser poster designed to build suspense and anticipation for the horror film release using atmospheric lighting and mystery-driven composition.</p>
+      </div>
     </div>
-    <div class="card" onclick="openLightbox(this)">
-      <img src="Some Secrets Never Die.png" alt="Official Poster">
-      <h3>Official Poster</h3>
-      <p>The main promotional poster highlighting the central antagonist with dramatic lighting and horror typography to create a theatrical feel.</p>
+    <div class="sm-card" onclick="openLightbox(this)">
+      <img src="Some Secrets Never Die.png" alt="Official Poster" data-caption="Official Poster — Whispering Shadows Campaign" style="height:320px;object-fit:cover;">
+      <div class="sm-card-body">
+        <span class="sm-tag tag-red">Horror</span>
+        <h4>Official Poster</h4>
+        <p>The main promotional poster highlighting the central antagonist with dramatic lighting and horror typography to create a theatrical feel.</p>
+      </div>
     </div>
-    <div class="card" onclick="openLightbox(this)">
-      <img src="The Watcher.png" alt="The Watcher Character Poster">
-      <h3>The Watcher Character Poster</h3>
-      <p>Character reveal poster using red atmospheric lighting and suspenseful composition to introduce the mysterious villain of the story.</p>
+    <div class="sm-card" onclick="openLightbox(this)">
+      <img src="The Watcher.png" alt="The Watcher Character Poster" data-caption="The Watcher — Whispering Shadows Campaign" style="height:320px;object-fit:cover;">
+      <div class="sm-card-body">
+        <span class="sm-tag tag-red">Horror</span>
+        <h4>The Watcher Character Poster</h4>
+        <p>Character reveal poster using red atmospheric lighting and suspenseful composition to introduce the mysterious villain of the story.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <section id="selected" class="fly-in-up">
   <h2>Selected Design Work</h2>
-  <div class="projects">
+  <div class="sm-grid">
 
-    <!-- FIX: added onclick="openLightbox(this)" to all 3 cards below -->
-    <div class="card" onclick="openLightbox(this)">
-      <img src="curalink-logo.png" alt="Curalink Brand Identity">
-      <h3>Curalink Brand Identity</h3>
-      <p>
-        Medical technology brand logo with a modern stethoscope-inspired
-        symbol and professional teal gradient designed to represent healthcare,
-        innovation, and trust.
-      </p>
+    <div class="sm-card" onclick="openLightbox(this)">
+      <img src="curalink-logo.png" alt="Curalink Brand Identity" data-caption="Curalink Brand Identity" style="height:260px;object-fit:contain;background:#f5f5f5;padding:10px;">
+      <div class="sm-card-body">
+        <span class="sm-tag tag-blue">Branding</span>
+        <h4>Curalink Brand Identity</h4>
+        <p>Medical technology brand logo with a modern stethoscope-inspired symbol and professional teal gradient designed to represent healthcare, innovation, and trust.</p>
+      </div>
     </div>
 
-    <div class="card" onclick="openLightbox(this)">
-      <img src="luxury-apartments.png" alt="Luxury Apartments Advertisement">
-      <h3>Luxury Apartments Advertisement</h3>
-      <p>
-        Real estate advertisement designed with elegant typography and
-        modern architecture visuals to communicate premium living and
-        attract property buyers.
-      </p>
+    <div class="sm-card" onclick="openLightbox(this)">
+      <img src="luxury-apartments.png" alt="Luxury Apartments Advertisement" data-caption="Luxury Apartments Advertisement" style="height:260px;object-fit:cover;">
+      <div class="sm-card-body">
+        <span class="sm-tag tag-navy">Real Estate</span>
+        <h4>Luxury Apartments Advertisement</h4>
+        <p>Real estate advertisement designed with elegant typography and modern architecture visuals to communicate premium living and attract property buyers.</p>
+      </div>
     </div>
 
-    <div class="card" onclick="openLightbox(this)">
-      <img src="smog-awareness.png" alt="Smog Awareness Poster">
-      <h3>Smog Awareness Poster</h3>
-      <p>
-        Environmental awareness poster highlighting the harmful effects of
-        urban air pollution and encouraging public awareness through strong
-        visual storytelling.
-      </p>
+    <div class="sm-card" onclick="openLightbox(this)">
+      <img src="smog-awareness.png" alt="Smog Awareness Poster" data-caption="Smog Awareness Poster" style="height:260px;object-fit:cover;">
+      <div class="sm-card-body">
+        <span class="sm-tag tag-navy">Awareness</span>
+        <h4>Smog Awareness Poster</h4>
+        <p>Environmental awareness poster highlighting the harmful effects of urban air pollution and encouraging public awareness through strong visual storytelling.</p>
+      </div>
     </div>
 
   </div>
